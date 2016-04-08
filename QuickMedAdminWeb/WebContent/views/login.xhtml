@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.3.0/css/font-awesome-jsf.css" />
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="right" border="0"
+			width="100%">
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+				<td colspan="3" align="center" class="headerDownBg"><h:outputLabel
+						styleClass="labelheadingfont2" value="Quickmed Admin Login"></h:outputLabel></td>
+			</tr>
+			<tr style="height: 150px"></tr>
+
+			<tr>
+				<td width="100%">
+					<table cellpadding="0" cellspacing="0" width="100%" border="0">
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td colspan="3" align="center">
+							<h:outputLabel value="Admin Login" styleClass="labelfont_yellow_24"></h:outputLabel>
+							</td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td colspan="3" align="center"><h:outputLabel
+									styleClass="errorMessage" value="#{LoginBean.message}"></h:outputLabel></td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<h:panelGroup rendered="#{LoginBean.isLocationComboBoxDisplayed}">
+							<tr>
+								<td width="38%"></td>
+								<td width="3%" align="center" style="background-color: #28B779;"></td>
+								<td><h:selectOneMenu styleClass="inputText"
+										value="#{LoginBean.selectedLocation}">
+										<f:selectItem itemLabel="--Select Location--" itemValue="0"></f:selectItem>
+										<f:selectItems value="#{LoginBean.locationsList}"
+											var="location" itemLabel="#{location.description}"
+											itemValue="#{location.lookupDetailId}"></f:selectItems>
+
+									</h:selectOneMenu></td>
+
+							</tr>
+							<tr style="height: 10px"></tr>
+						</h:panelGroup>
+						<tr>
+							<td width="38%"></td>
+							<td width="3%" align="center" style="background-color: #28B779;"><i
+								class="fa fa-envelope" style="color: #fff;"></i></td>
+							<td><p:inputText styleClass="inputText"
+									placeholder="Enter your User Name/Email ID"
+									value="#{LoginBean.userName}"></p:inputText></td>
+
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td width="38%"></td>
+							<td width="3%" align="center" style="background-color: #ffb848;"><i
+								class="fa fa-key" style="color: #fff;"></i></td>
+							<td><p:password styleClass="inputText"
+									placeholder="Enter your password" value="#{LoginBean.password}"></p:password></td>
+
+						</tr>
+						<tr style="height: 20px"></tr>
+						<tr>
+							<td colspan="3">
+								<table width="100%" border="0" align="center">
+									<tr>
+										<td width="62%" align="right"><h:commandButton
+												style="height:34px;width:160px;" value="Login"
+												styleClass="refine_btn cmdBtnNew"
+												action="#{LoginBean.loginAction}"></h:commandButton></td>
+										<td></td>
+									</tr>
+
+								</table>
+							</td>
+						</tr>
+
+
+					</table>
+				</td>
+			</tr>
+
+		</table>
+	</h:form>
+</h:body>
+</html>

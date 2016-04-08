@@ -1,0 +1,137 @@
+package com.intuiture.qm.json;
+
+/**
+ * 
+ * This class is to find-out the overall purchase of a customer for a particular
+ * date and find out is there any discount applied
+ *
+ */
+public class TotalOrdersJson {
+	private Integer totalOrderId;
+	private String totalOrderGenId;
+	private Integer customerId;
+//	private Double totalPurchase;
+	private Integer couponCodeId;
+	private Double subTotal;
+	private Double totalAmount;
+	private Double deliveryCharges;
+	private Double discountAmount;
+	private Boolean isDeleted;
+	private String comments;
+	private String transactionId;
+	private Boolean isDelivered;
+	private Boolean isItemInvoiced;
+
+	public Integer getTotalOrderId() {
+		return totalOrderId;
+	}
+
+	public void setTotalOrderId(Integer totalOrderId) {
+		this.totalOrderId = totalOrderId;
+	}
+
+	public String getTotalOrderGenId() {
+		return totalOrderGenId;
+	}
+
+	public void setTotalOrderGenId(String totalOrderGenId) {
+		this.totalOrderGenId = totalOrderGenId;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+//	public Double getTotalPurchase() {
+//		return totalPurchase;
+//	}
+//
+//	public void setTotalPurchase(Double totalPurchase) {
+//		this.totalPurchase = totalPurchase;
+//	}
+
+	public Integer getCouponCodeId() {
+		return couponCodeId;
+	}
+
+	public void setCouponCodeId(Integer couponCodeId) {
+		this.couponCodeId = couponCodeId;
+	}
+
+	public Double getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(Double subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public Double getDeliveryCharges() {
+		return deliveryCharges;
+	}
+
+	public void setDeliveryCharges(Double deliveryCharges) {
+		this.deliveryCharges = deliveryCharges;
+	}
+
+	public Double getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(Double discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public Boolean getIsDelivered() {
+		return isDelivered;
+	}
+
+	public void setIsDelivered(Boolean isDelivered) {
+		this.isDelivered = isDelivered;
+	}
+
+	public Boolean getIsItemInvoiced() {
+		return isItemInvoiced;
+	}
+
+	public void setIsItemInvoiced(Boolean isItemInvoiced) {
+		this.isItemInvoiced = isItemInvoiced;
+	}
+
+}

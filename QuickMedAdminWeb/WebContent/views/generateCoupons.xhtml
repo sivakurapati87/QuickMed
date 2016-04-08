@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputScript library="js" name="script.js"></h:outputScript>
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<ui:include src="header.xhtml"></ui:include>
+		</table>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<tr>
+
+				<td align="center" class="headerDownBg" colspan="3"><h:outputLabel
+						value="Generate Coupons" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+			<tr style="height: 50px"></tr>
+
+			<tr>
+				<td colspan="3" align="center"><h:outputLabel
+						styleClass="errorMessage" value="#{GenerateCouponBean.errMessage}"></h:outputLabel></td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr style="width: 100%">
+				<td align="right" width="50%"><h:outputLabel
+						value="Coupon Code" styleClass="labelfont225"></h:outputLabel></td>
+				<td width="1%"></td>
+				<td align="left" width="49%"><h:inputText 
+						value="#{GenerateCouponBean.couponCode}"></h:inputText></td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td align="right"><h:outputLabel value="Discount Percentage"
+						styleClass="labelfont225"></h:outputLabel></td>
+				<td></td>
+				<td align="left"><p:spinner stepFactor=".25" min="0" size="5" onkeypress="return validateFloat(event,this)"
+						value="#{GenerateCouponBean.discountPercentage}"></p:spinner></td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td align="right"><h:outputLabel value="Expiry Date"
+						styleClass="labelfont225"></h:outputLabel></td>
+				<td></td>
+				<td align="left"><p:calendar navigator="true"
+						value="#{GenerateCouponBean.expiryDate}" yearRange="1900:2110"
+						readonlyInput="true" pattern="dd-MMM-yyyy" effect="fold">
+					</p:calendar></td>
+			</tr>
+
+
+			<tr style="height: 20px"></tr>
+			<tr>
+				<td colspan="3">
+					<table border="0" align="center">
+						<tr>
+							<td><h:commandButton value="Submit"
+									action="#{GenerateCouponBean.saveCoupon}"
+									styleClass="refine_btn cmdBtnNew"></h:commandButton></td>
+							<td></td>
+
+							<td><h:commandButton value="Cancel"
+									styleClass="refine_btn cmdBtnNew"
+									action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+
+
+			<tr style="height: 30px"></tr>
+			<tr>
+				<td colspan="3" align="center" width="80%"><p:dataTable
+						value="#{GenerateCouponBean.couponList}" var="json"
+						style="width:70%">
+
+						<p:column headerText="Edit" styleClass="column5">
+							<h:commandLink action="#{GenerateCouponBean.updateCoupon}">
+								<h:graphicImage library="images/icons" name="edit.png"></h:graphicImage>
+								<f:setPropertyActionListener
+									target="#{GenerateCouponBean.couponJson}" value="#{json}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</p:column>
+						<p:column headerText="Delete" styleClass="column5">
+							<h:commandLink action="#{GenerateCouponBean.deleteCoupon}">
+								<h:graphicImage library="images/icons" name="deleteicon.png"></h:graphicImage>
+								<f:setPropertyActionListener
+									target="#{GenerateCouponBean.couponJson}" value="#{json}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</p:column>
+						<p:column headerText="Coupon Code " styleClass="column20">
+							<h:outputLabel value="#{json.couponCode}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Discount Percentage" styleClass="column20">
+							<h:outputLabel value="#{json.discountPercentage}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Expiry Date" styleClass="column20">
+							<h:outputLabel value="#{json.expiryDate}">
+								<f:convertDateTime pattern="dd-MMM-yyyy" />
+							</h:outputLabel>
+						</p:column>
+					</p:dataTable></td>
+			</tr>
+
+
+
+
+
+
+
+
+
+
+
+		</table>
+	</h:form>
+</h:body>
+</html>

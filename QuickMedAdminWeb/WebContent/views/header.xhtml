@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<tr>
+		<td align="center">
+			<table width="100%" class="headerBg">
+				<tr>
+					<td align="right" width="58%"><h:graphicImage library="images"
+							name="logo.png"></h:graphicImage></td>
+					<td align="right"><h:commandLink value="LogOut"
+							rendered="#{LoginBean.userJson !=null}"
+							action="#{LoginBean.logOutAction}" styleClass="link"></h:commandLink></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</ui:composition>

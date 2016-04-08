@@ -1,0 +1,873 @@
+.user_150_150 {
+	background-position: -1px -166px !important;
+	border: 0 none;
+	border-radius: 50%;
+	box-shadow: 0 0 4px #444;
+	height: 148px !important;
+	width: 148px !important;
+}
+
+.ui-datatable-odd {
+	background: #b9ffff;
+}
+
+.ui-datatable-even {
+	background: #ebfefe;
+}
+
+.width20 {
+	width: 20px;
+}
+
+.user_60_60 {
+	background-position: -1px -166px !important;
+	border: 0 none;
+	border-radius: 50%;
+	box-shadow: 0 0 4px #444;
+	height: 60px !important;
+	width: 60px !important;
+}
+
+.width600 {
+	font-family: Palatino;
+	width: 600px;
+}
+
+.errorMessage {
+	font-size: 12px;
+	color: #ff5300;
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+}
+
+.errMessage {
+	background-color: #F2DEDE;
+	color: #b94a48;
+	font-family: segoe ui, Arial, sans-serif;
+	font-size: 1.1em;
+}
+
+.btnStyle {
+	width: 180px;
+	height: 40px;
+	font-family: Lucidatypewriter, monospace;
+	color: #4d4d4d;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.refine_btn {
+	/* 	background: rgba(0, 0, 0, 0) */
+	/* 		linear-gradient(to bottom, #69B124 0px, #69B124 100%) repeat scroll 0 */
+	/* 		0; */
+	background-color: transparent;
+	border: 1px solid #4e9c4e;
+	border-radius: 3px;
+	box-shadow: 0 1px 0 0 #69B124 inset;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	font-size: 15px;
+	font-weight: 400;
+	min-width: 20px;
+	text-align: center;
+	text-shadow: 0 -1px 1px #366b36;
+	border: 1px solid #4e9c4e;
+}
+
+.cmdBtnNew {
+	border-radius: 6px;
+	height: 32px;
+	width: 120px;
+	font-size: 15px;
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+}
+
+.labelfont_16 {
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+	color: #2e2d4a;
+	font-size: 16px;
+}
+.labelfont_yellow_24 {
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+	color: #efe9be;
+	font-size: 24px;
+}
+
+.labelfont14 {
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+	color: #98dbe0;
+	font-size: 16px;
+}
+
+.labelfont12 {
+	font-family: Palatino;
+	font-size: 12px;
+	color: #4d4d4d;
+}
+
+.bgColor {
+	background-color: #e8d2c6;
+}
+
+.bgColor1 {
+	background-color: #000000;
+}
+
+.labelfont10 {
+	font-family: Palatino;
+	font-size: 10px;
+	color: #4d4d4d;
+}
+
+.labelfont225 {
+	font-family: Palatino;
+	color: #d5d869;
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.labelheadingfont {
+	font-family: Palatino;
+	font-size: 20px;
+	color: #ffb871;
+}
+
+.labelheadingfont1 {
+	font-family: Palatino;
+	font-size: 20px;
+	color: #ffffff;
+}
+
+.labelheadingfont2 {
+	font-family: Goudy Old Style, Garamond, Big Caslon, Times New Roman,
+		serif;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	color: #7b3e3e;
+}
+
+.labelfont6 {
+	font-family: Palatino;
+	font-size: 6px;
+	color: #4d4d4d;
+	font-weight: bold;
+}
+
+.labelfontgray18 {
+	color: #888;
+	font-size: 18px;
+}
+
+.labelfont16 {
+	font-family: Palatino;
+	font-size: 16px;
+	color: #3b3b3b;
+	padding: 0 5px;
+}
+.height36{
+	height: 36px;
+	background: #ffbb77;
+}
+.labelfont_Vio_16 {
+	font-family: Palatino;
+	font-size: 16px;
+	color: #800080;
+}
+
+.labelfont123 {
+	font-family: serif;
+	font-size: 15px;
+	color: red;
+}
+
+.labelfontbold16 {
+	font-family: Palatino;
+	font-size: 16px;
+	color: #4d4d4d;
+	font-weight: bold;
+}
+
+.labelfontwhite14 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 14px;
+	font-stretch: narrower;
+	background-color: green;
+}
+
+.labelfontwhite12 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 12px;
+	font-stretch: narrower;
+	color: #ddf9f8;
+}
+
+.labelfont22 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 22px;
+	color: #7e7e7e;
+}
+
+.labelfontLitBlue14 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 14px;
+	color: #2c96a9;
+}
+
+.width180 {
+	width: 180px;
+}
+
+.borderRadius {
+	border-radius: 12px;
+}
+
+.labelfont18 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 18px;
+	color: #4d4d4d;
+}
+
+.tab18 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 18px;
+	color: #5c235c;
+}
+
+.labelfont24 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 24px;
+	color: #4d4d4d;
+}
+
+.controlfontViolet14 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 14px;
+	color: #800080;
+}
+
+.link_lightblack {
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #949494;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.link_black {
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #060606;
+	padding: 0 21px;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+
+.specialAp {
+	font-family: Constantia;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ff4fff;
+	padding: 0 5px;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+
+.specialAp16 {
+	font-family: Goudy Old Style, Garamond, Big Caslon, Times New Roman,
+		serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ffff9b;
+	padding: 0 5px;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+.lblFont_18 {
+	font-family: Goudy Old Style, Garamond, Big Caslon, Times New Roman,
+		serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #3e3e3e;
+	padding: 0 5px;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+.link {
+	font-family: Constantia;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ffffe1;
+	padding: 0 5px;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+
+.link_blue16 {
+	font-family: Constantia;
+	font-size: 16px;
+	font-weight: bold;
+	color: #a4daee;
+	padding: 0 5px;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+
+.lbl_gray {
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #aeaeae;
+	padding: 0 21px;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.link_black18 {
+	font-family: tahoma;
+	font-size: 18px;
+	font-weight: bold;
+	color: #060606;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.lbl_lightgray {
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #060606;
+	padding: 0 21px;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.btn_yellow {
+	background-color: #f8f229;
+	color: #aa5500;
+	height: 35px;
+	width: 140px;
+	font-size: 20px;
+	font-weight: bold;
+	border: solid 0px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+}
+
+.btn_lightyellow {
+	background-color: #fdfcbd;
+	color: #aa5500;
+	height: 35px;
+	width: 140px;
+	font-size: 20px;
+	font-weight: bold;
+	border: solid 0px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+}
+
+.controlfont {
+	FONT-FAMILY: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 8.5pt;
+	color: #ffffff;
+	font-weight: normal;
+}
+
+.labelvalue {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	font-size: 12px;
+	color: #247AEE;
+}
+
+.bg {
+	background: url("#{resource['images/home:bgImg.png']}");
+}
+
+.headerBg {
+	background: url("#{resource['images/home:header.png']}");
+	background-size: 100%;
+}
+
+.headerDownBg {
+	background: url("#{resource['images/home:headerDown.png']}");
+	background-size: 100%;
+}
+
+.ui-dialog.ui-widget-content {
+	background-image: none;
+	background-color: silver;
+}
+
+.ui-dialog-titlebar {
+	background-image: none;
+	background-color: #2baed5;
+}
+
+.comboBoxStyle {
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 3px;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+	color: #5a5a5a;
+	display: block;
+	height: 36px;
+	line-height: 34px;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0 1px 1px #fff;
+	width: 200px;
+	white-space: nowrap;
+}
+
+.comboBoxStyle120 {
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 3px;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+	color: #5a5a5a;
+	display: block;
+	height: 36px;
+	line-height: 34px;
+	overflow: hidden;
+	padding: 0 0 0 10px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0 1px 1px #fff;
+	width: 120px;
+	white-space: nowrap;
+}
+
+.comboBoxStyle165 {
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 3px;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+	color: #5a5a5a;
+	display: block;
+	height: 36px;
+	line-height: 34px;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0 1px 1px #fff;
+	width: 165px;
+	white-space: nowrap;
+}
+
+.comboBoxStyle115 {
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 3px;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+	color: #5a5a5a;
+	display: block;
+	height: 36px;
+	line-height: 34px;
+	overflow: hidden;
+	padding: 0 0 0 10px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0 1px 1px #fff;
+	width: 115px;
+	white-space: nowrap;
+}
+
+.search_box_field {
+	background: #333 none repeat scroll 0 0;
+	border: 1px solid #000;
+	border-radius: 3px;
+	height: 38px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.rentin_location_hover {
+	background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+	height: 66px;
+	left: 0;
+	padding-top: 94px;
+	position: absolute;
+	top: 0;
+	width: 300px;
+}
+
+.register_form {
+	background: #f6f6f6 none repeat scroll 0 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0 0 10px #dcdcdc inset;
+	font-size: 13px;
+	margin-left: 30px;
+	padding: 20px 30px;
+	width: 530px;
+}
+
+.login_form {
+	background: #f6f6f6 none repeat scroll 0 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0 0 10px #dcdcdc inset;
+	font-size: 13px;
+	margin-left: 30px;
+	padding: 20px 30px;
+	width: 330px;
+}
+.border1px{
+	border: 1px solid #797979;
+}
+.header16 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	color: #ffa042;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.header22 {
+	font-family: verdana, arial, helvetica, geneva, sans serif;
+	color: #e7e981;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.header20 {
+	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+	color: #ff80ff;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.lable14black {
+	font-family: Palatino;
+	font-size: 14px;
+	color: #3e003e;
+}
+
+.inputText360 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	padding: 4px;
+	width: 360px;
+}
+
+.inputText1 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	padding: 4px;
+	width: 190px;
+}
+
+.inputText2 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	padding: 4px;
+	width: 100px;
+}
+
+.inputText220 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 30px;
+	line-height: 26px;
+	padding: 4px;
+	width: 240px;
+}
+
+.inputText120 {
+	color: #666;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	width: 120px;
+}
+
+.inputText200 {
+	color: #666;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	width: 200px;
+}
+
+.inputText180 {
+	color: #666;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 20px;
+	line-height: 26px;
+	padding: 4px;
+	width: 180px;
+}
+
+.inputText45 {
+	color: #666;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 20px;
+	line-height: 26px;
+	width: 45px;
+}
+
+.inputText122 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 20px;
+	line-height: 26px;
+	padding: 4px;
+	width: 122px;
+}
+
+.inputText100 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	width: 100px;
+}
+
+.inputTextArea240 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	line-height: 26px;
+	padding: 4px;
+	width: 240px;
+}
+
+.inputTextArea600 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	line-height: 26px;
+	padding: 4px;
+	width: 240px;
+}
+
+.mandatory {
+	font-family: Palatino;
+	color: #ff3e3e;
+}
+
+.width350 {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	color: #666;
+	width: 350px;
+	font-size: 14px;
+}
+
+.width700 {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	color: #666;
+	width: 350px;
+	height: 100px;
+	font-size: 14px;
+}
+
+.width750 {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	color: #666;
+	width: 260px;
+	height: 30px;
+	font-size: 14px;
+	padding: 4px;
+	line-height: 26px;
+}
+
+.width725 {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	color: #666;
+	width: 190px;
+	height: 30px;
+	font-size: 14px;
+	padding: 4px;
+	line-height: 26px;
+}
+
+.inputText {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 30px;
+	line-height: 26px;
+	padding: 4px;
+	width: 260px;
+}
+
+.inputText320 {
+	border: 1px solid #ccc;
+	box-shadow: 0 0 3px #eee inset;
+	font-size: 16px;
+	height: 24px;
+	line-height: 26px;
+	padding: 4px;
+	width: 320px;
+}
+
+.lablefont {
+	font-family: Palatino;
+	color: #d5d869;
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.add_type_box {
+	background: #f8f8f8 none repeat scroll 0 0;
+	border: 1px dashed #e5e5e5;
+	margin-bottom: 30px;
+	padding: 20px;
+}
+
+.sele_form_top_new {
+	border: 1px solid #c8c8c8;
+	color: #444;
+	padding: 3px;
+	resize: none;
+	width: 266px;
+}
+
+.cmdBtn {
+	height: 30px;
+	width: 150px;
+	font-size: 15px;
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+}
+
+.selection tr {
+	float: left;
+	width: 33%;
+}
+
+.frstrw {
+	height: 30px;
+	font-size: 15px;
+	font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+		Georgia, serif;
+}
+
+.column11 {
+	width: 11%;
+}
+
+.column9 {
+	width: 9%;
+}
+.column8{
+	width: 8%;
+}
+
+.column3 {
+	width: 3%;
+}
+
+.column10 {
+	width: 10%;
+}
+
+.column20 {
+	width: 20%;
+}
+.column24 {
+	width: 24%;
+}
+
+.column15 {
+	width: 15%;
+}
+.column40 {
+	width: 40%;
+}
+
+.column60 {
+	width: 60%;
+}
+
+.column5 {
+	width: 5%;
+}
+
+.column6 {
+	width: 6%;
+}
+
+.column16 {
+	width: 16%
+}
+.column13 {
+	width: 13%
+}
+
+.column14 {
+	width: 14%
+}
+
+.column2 {
+	width: 2%
+}
+
+.column4 {
+	width: 4%
+}
+
+.
+.column12 {
+	width: 12%
+}
+.align_right{
+	text-align: right;
+}
+.align_center{
+	text-align: center;
+}
+.comboBoxSearchBoxStyle {
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 3px;
+	/* 	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset; */
+	color: #5a5a5a;
+	display: block;
+	height: 36px;
+	line-height: 34px;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0 1px 1px #fff;
+	width: 220px;
+	white-space: nowrap;
+}

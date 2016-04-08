@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+
+				<td align="center" class="headerDownBg"><h:outputLabel
+						value="Add Categories" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+
+		</table>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<tr style="height: 100px"></tr>
+			<tr>
+				<td align="center" colspan="3"><h:outputLabel
+						styleClass="errorMessage" value="#{CategoryBean.errMessage}"></h:outputLabel></td>
+			</tr>
+			<tr style="height: 20px"></tr>
+			<tr>
+				<td align="right" width="48%"><p:outputLabel value="Category "
+						styleClass="labelfont225"></p:outputLabel></td>
+				<td width="1%" align="center"><h:outputLabel value=":"></h:outputLabel></td>
+				<td><p:inputText value="#{CategoryBean.category}"
+						styleClass="inputText1"></p:inputText></td>
+			</tr>
+			<tr style="height: 20px;"></tr>
+			<tr>
+				<td align="center" colspan="3">
+					<table align="center">
+						<tr>
+							<td><h:commandButton value="Submit"
+									action="#{CategoryBean.submitCategory}"
+									styleClass="refine_btn cmdBtnNew"></h:commandButton></td>
+							<td width="10px"></td>
+							<td><h:commandButton value="Cancel"
+									styleClass="refine_btn cmdBtnNew"
+									action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 20px"></tr>
+			<tr>
+				<td colspan="3" align="center"><p:dataTable var="json"
+						style="width:50%" value="#{CategoryBean.categoryJsonList}">
+						<p:column styleClass="column10">
+							<f:facet name="header">
+								<h:outputLabel value="Edit"></h:outputLabel>
+							</f:facet>
+							<h:commandLink action="#{CategoryBean.updateCategory}">
+								<h:graphicImage library="images/icons" name="edit.png"></h:graphicImage>
+								<f:setPropertyActionListener
+									target="#{CategoryBean.categoryJson}" value="#{json}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</p:column>
+						<p:column styleClass="column10">
+							<f:facet name="header">
+								<h:outputLabel value="Delete"></h:outputLabel>
+							</f:facet>
+							<h:commandLink action="#{CategoryBean.deleteCategory}">
+								<h:graphicImage library="images/icons" name="deleteicon.png"></h:graphicImage>
+								<f:setPropertyActionListener
+									target="#{CategoryBean.categoryJson}" value="#{json}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</p:column>
+						<p:column styleClass="column40">
+							<f:facet name="header">
+								<h:outputLabel value="Category"></h:outputLabel>
+							</f:facet>
+							<h:outputLabel value="#{json.cDescription}"></h:outputLabel>
+						</p:column>
+					</p:dataTable></td>
+			</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</table>
+	</h:form>
+</h:body>
+</html>

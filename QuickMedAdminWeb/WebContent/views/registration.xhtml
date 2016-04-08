@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+
+				<td align="center" class="headerDownBg"><h:outputLabel
+						value="Employee Registration" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+
+			<tr>
+				<td width="100%">
+					<table width="100%" border="0">
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td colspan="3" align="center"><h:outputLabel
+									styleClass="errorMessage" value="#{AddEmployeeBean.message}"></h:outputLabel></td>
+						</tr>
+						<tr style="height: 5px"></tr>
+						<tr>
+							<td align="right" width="45%"><h:outputLabel
+									styleClass="lablefont" value="Employee Type"></h:outputLabel></td>
+							<td width="1%"></td>
+							<td><h:selectOneMenu
+									value="#{AddEmployeeBean.selectedEmpType}"
+									styleClass="comboBoxStyle">
+									<f:selectItem itemLabel="--Select--" itemValue="0"></f:selectItem>
+									<f:selectItems value="#{AddEmployeeBean.empTypeComboList}"
+										var="empType" itemLabel="#{empType.description}"
+										itemValue="#{empType.lookupDetailId}"></f:selectItems>
+								</h:selectOneMenu></td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td align="right" width="45%"><h:outputLabel
+									styleClass="lablefont" value="Email"></h:outputLabel></td>
+							<td width="1%"></td>
+							<td><p:inputText styleClass="width750"
+									placeholder="Enter your Email" value="#{AddEmployeeBean.email}"></p:inputText></td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td align="right" width="45%"><h:outputLabel
+									styleClass="lablefont" value="Password"></h:outputLabel></td>
+							<td width="1%"></td>
+							<td><p:password styleClass="width750"
+									placeholder="Enter your selected password" feedback="true"
+									value="#{AddEmployeeBean.password}"></p:password></td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td align="right" width="45%"><h:outputLabel
+									styleClass="lablefont" value="Confirm Password"></h:outputLabel></td>
+							<td width="1%"></td>
+							<td><p:password styleClass="width750"
+									placeholder="ReEnter your selected password" feedback="true"
+									value="#{AddEmployeeBean.reEnteredPwd}"></p:password></td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td align="right" width="45%"><h:outputLabel
+									styleClass="lablefont" value="Full Name"></h:outputLabel></td>
+							<td width="1%"></td>
+							<td><p:inputText styleClass="width750"
+									placeholder="Enter your Full Name"
+									value="#{AddEmployeeBean.fullName}"></p:inputText></td>
+						</tr>
+						<tr style="height: 10px"></tr>
+						<tr>
+							<td align="right" width="45%"><h:outputLabel
+									styleClass="lablefont" value="Mobile No"></h:outputLabel></td>
+							<td width="1%"></td>
+							<td><p:inputText
+									onkeypress="return validateFloat(event,this)"
+									styleClass="width750" placeholder="Enter your Mobile Number"
+									maxlength="12" value="#{AddEmployeeBean.mobileNo}"></p:inputText></td>
+						</tr>
+						<tr style="height: 20px"></tr>
+						<tr>
+							<td align="center" colspan="3">
+								<table align="center">
+									<tr>
+										<td><h:commandButton value="Create Account"
+												action="#{AddEmployeeBean.saveEmployee}"
+												styleClass="refine_btn cmdBtnNew"></h:commandButton></td>
+										<td width="10px"></td>
+										<td><h:commandButton value="Cancel"
+												styleClass="refine_btn cmdBtnNew"
+												action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr style="height: 20px"></tr>
+						<tr>
+							<td align="center" colspan="3"><p:dataTable
+									style="width:70%" value="#{AddEmployeeBean.employeeList}"
+									var="emp">
+									<p:column styleClass="column5">
+										<f:facet name="header">
+											<h:outputLabel value="Edit"></h:outputLabel>
+										</f:facet>
+										<h:commandLink action="#{AddEmployeeBean.editEmployee}">
+											<h:graphicImage library="images/icons" name="edit.png"></h:graphicImage>
+											<f:setPropertyActionListener
+												target="#{AddEmployeeBean.userJson}" value="#{emp}"></f:setPropertyActionListener>
+										</h:commandLink>
+									</p:column>
+									<p:column styleClass="column5">
+										<f:facet name="header">
+											<h:outputLabel value="Delete"></h:outputLabel>
+										</f:facet>
+										<h:commandLink action="#{AddEmployeeBean.deleteEmployee}">
+											<h:graphicImage library="images/icons" name="deleteicon.png"></h:graphicImage>
+											<f:setPropertyActionListener
+												target="#{AddEmployeeBean.userJson}" value="#{emp}"></f:setPropertyActionListener>
+										</h:commandLink>
+									</p:column>
+									<p:column headerText="Employee Type" styleClass="column15">
+										<h:outputLabel value="#{emp.empType}"></h:outputLabel>
+									</p:column>
+									<p:column headerText="User Name" styleClass="column15">
+										<h:outputLabel value="#{emp.userName}"></h:outputLabel>
+									</p:column>
+									<p:column headerText="Full Name" styleClass="column15">
+										<h:outputLabel value="#{emp.fullName}"></h:outputLabel>
+									</p:column>
+									<p:column headerText="Mobile No" styleClass="column15">
+										<h:outputLabel value="#{emp.mobileNumber}"></h:outputLabel>
+									</p:column>
+								</p:dataTable></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>

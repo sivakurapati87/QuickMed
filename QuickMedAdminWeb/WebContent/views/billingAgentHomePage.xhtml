@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" width="100%"
+			border="0">
+
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+
+				<td align="center" class="headerDownBg"><h:outputLabel
+						value="Home Page" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+			<tr style="height: 80px"></tr>
+			<tr>
+				<td width="100%" align="center">
+					<table width="60%" cellpadding="0" align="center" cellspacing="0"
+						border="0">
+						<tr>
+							<td align="center"><h:commandLink
+									action="#{HomeBean.displayOrders}">
+
+									<p:graphicImage library="images/home" name="orderList.png"></p:graphicImage>
+								</h:commandLink></td>
+							<td align="center"><h:commandLink
+									action="#{HomeBean.invoiceAction}">
+									<p:graphicImage library="images/home" name="invoice.png"></p:graphicImage>
+								</h:commandLink></td>
+						</tr>
+						<tr style="height: 100px;"></tr>
+						<tr>
+							<td align="center" colspan="2"><h:commandLink
+									action="#{HomeBean.customerList}">
+
+									<p:graphicImage library="images/home" name="customerList.png"></p:graphicImage>
+								</h:commandLink></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>

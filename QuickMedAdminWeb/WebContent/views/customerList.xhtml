@@ -1,0 +1,152 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputScript library="js" name="script.js"></h:outputScript>
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<f:loadBundle var="categoryUnitType"
+				basename="com.intuiture.storetodoorgrocer.util.quantityType"></f:loadBundle>
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+
+				<td align="center" class="headerDownBg" colspan="3"><h:outputLabel
+						value="Customer Info" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td colspan="3">
+
+					<table>
+						<ui:repeat var="searchJson"
+							value="#{CustomerBean.gridInfoJson.searchJsonList}">
+							<tr>
+								<td><h:selectOneMenu style="width:100%"
+										value="#{searchJson.selectedSearchFieldName}"
+										styleClass="comboBoxSearchBoxStyle">
+										<f:ajax
+											listener="#{CustomerBean.onChangeSearchFieldNameAction}"
+											render="@form" execute="@form"></f:ajax>
+										<f:selectItems itemLabel="#{field.label}"
+											itemValue="#{field.value}" var="field"
+											value="#{searchJson.searchFieldList}"></f:selectItems>
+									</h:selectOneMenu></td>
+								<td width="10px"></td>
+								<td><h:selectOneMenu value="#{searchJson.selectedOperator}"
+										style="width:100%" styleClass="comboBoxSearchBoxStyle">
+										<f:selectItems itemLabel="#{operator.label}"
+											itemValue="#{operator.value}" var="operator"
+											value="#{searchJson.operatorsList}"></f:selectItems>
+									</h:selectOneMenu></td>
+								<td width="10px"></td>
+								<td><p:inputText styleClass="inputText2"
+										rendered="#{searchJson.selectedDataType != 'date'}"
+										value="#{searchJson.searchValue}"></p:inputText> <p:calendar
+										rendered="#{searchJson.selectedDataType == 'date'}"
+										navigator="true" value="#{searchJson.dateSearchValue}"
+										yearRange="1900:2110" readonlyInput="true"
+										pattern="dd-MMM-yyyy" effect="fold">
+									</p:calendar></td>
+								<td width="20px"></td>
+								<td><p:commandButton value="Search" update="@form"
+										style="height:34px;width:100px;"
+										action="#{CustomerBean.searchGoAction}" icon="ui-icon-check"></p:commandButton></td>
+								<td align="center"><h:commandButton value="Cancel"
+										styleClass="refine_btn cmdBtnNew"
+										action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+							</tr>
+						</ui:repeat>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 5px"></tr>
+			<tr>
+				<td colspan="3">
+
+					<table>
+						<tr>
+							<td><p:commandLink action="#{CustomerBean.navigationAction}"
+									update="@form">
+									<f:setPropertyActionListener
+										target="#{CustomerBean.navigationTagId}"
+										value="#{categoryUnitType.first}"></f:setPropertyActionListener>
+									<p:graphicImage library="images/icons" name="first.gif">
+									</p:graphicImage>
+								</p:commandLink></td>
+							<td><p:commandLink action="#{CustomerBean.navigationAction}"
+									update="@form">
+									<f:setPropertyActionListener
+										target="#{CustomerBean.navigationTagId}"
+										value="#{categoryUnitType.previous}"></f:setPropertyActionListener>
+									<p:graphicImage library="images/icons" name="prev.gif">
+									</p:graphicImage>
+								</p:commandLink></td>
+							<td><p:commandLink action="#{CustomerBean.navigationAction}"
+									update="@form">
+									<f:setPropertyActionListener
+										target="#{CustomerBean.navigationTagId}"
+										value="#{categoryUnitType.next}"></f:setPropertyActionListener>
+									<p:graphicImage library="images/icons" name="next.gif">
+									</p:graphicImage>
+								</p:commandLink></td>
+							<td><p:commandLink action="#{CustomerBean.navigationAction}"
+									update="@form">
+									<f:setPropertyActionListener
+										target="#{CustomerBean.navigationTagId}"
+										value="#{categoryUnitType.last}"></f:setPropertyActionListener>
+									<p:graphicImage library="images/icons" name="last.gif">
+									</p:graphicImage>
+								</p:commandLink></td>
+							<td style="width: 10px"></td>
+							<td><p:outputLabel styleClass="specialAp16"
+									value="#{CustomerBean.gridInfoJson.currentPage}"></p:outputLabel>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 5px"></tr>
+			<tr>
+				<td colspan="3" align="center" width="80%"><p:dataTable
+						value="#{CustomerBean.customerList}" var="customer"
+						style="width:100%">
+
+						<p:column headerText="Customer Name " styleClass="column15">
+							<h:outputLabel value="#{customer.fullName}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Address" styleClass="column15">
+							<h:outputLabel value="#{customer.deliveryAddress}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Email" styleClass="column15">
+							<h:outputLabel value="#{customer.email}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Phone Number" styleClass="column15">
+							<h:outputLabel value="#{customer.phoneNo}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Yearly Purchases" styleClass="column15">
+							<h:outputLabel value="#{customer.yearlyPurchase}"></h:outputLabel>
+						</p:column>
+						<p:column headerText="Registered On" styleClass="column15">
+							<h:outputLabel value="#{customer.createdOn}">
+								<f:convertDateTime pattern="dd-MMM-yyyy"></f:convertDateTime>
+							</h:outputLabel>
+						</p:column>
+					</p:dataTable></td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>
+ -->

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<ui:include src="header.xhtml"></ui:include>
+		</table>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<tr>
+				<td align="center" class="headerDownBg"><h:outputLabel
+						value="Add Subcategories" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+
+
+		</table>
+
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<tr style="height: 30px"></tr>
+			<tr>
+				<td align="center" colspan="3"><h:outputLabel
+						styleClass="errorMessage" value="#{SubCategoryBean.errMessage}"></h:outputLabel></td>
+			</tr>
+			<tr style="height: 20px"></tr>
+			<tr>
+				<td align="right"><p:outputLabel value="Categories :"
+						styleClass="labelfont225"></p:outputLabel></td>
+				<td><h:selectOneMenu styleClass="comboBoxStyle"
+						value="#{SubCategoryBean.selectedCategory}">
+						<f:selectItem itemLabel="--Select--" itemValue="0"></f:selectItem>
+						<f:selectItems value="#{SubCategoryBean.categoryJsonList}"
+							var="category" itemLabel="#{category.cDescription}"
+							itemValue="#{category.categoryId}"></f:selectItems>
+					</h:selectOneMenu></td>
+			</tr>
+			<tr style="height: 10px;"></tr>
+			<tr>
+				<td align="right" width="48%"><p:outputLabel
+						styleClass="labelfont225" value="Sub Category :"></p:outputLabel></td>
+				<td><p:inputText styleClass="inputText1"
+						value="#{SubCategoryBean.subcategory}"></p:inputText></td>
+			</tr>
+			
+
+			<tr style="height: 20px"></tr>
+			<tr>
+				<td align="center" colspan="2">
+
+					<table align="center">
+						<tr>
+							<td><h:commandButton value="Submit"
+									action="#{SubCategoryBean.submitSubCategoryAction}"
+									styleClass="refine_btn cmdBtnNew"></h:commandButton></td>
+							<td width="10px"></td>
+							<td><h:commandButton value="Cancel"
+									styleClass="refine_btn cmdBtnNew"
+									action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 30px;"></tr>
+			<tr>
+				<td align="center" colspan="2">
+					<table width="100%">
+						<tr>
+							<td width="40%" align="right" valign="top"><p:dataTable var="json"
+									rows="10" paginator="true" paginatorPosition="top"
+									style="width:50%" value="#{SubCategoryBean.categoryJsonList}">
+									<p:column styleClass="column20">
+										<f:facet name="header">
+											<h:outputLabel value=" "></h:outputLabel>
+										</f:facet>
+										<h:commandLink action="#{SubCategoryBean.subGridAction}">
+											<h:graphicImage library="images/icons"
+												name="#{json.imageName}"></h:graphicImage>
+											<f:setPropertyActionListener
+												target="#{SubCategoryBean.categoryJson}" value="#{json}"></f:setPropertyActionListener>
+										</h:commandLink>
+									</p:column>
+									<p:column styleClass="column80">
+										<f:facet name="header">
+											<h:outputLabel value="Category"></h:outputLabel>
+										</f:facet>
+										<h:outputLabel value="#{json.cDescription}"></h:outputLabel>
+									</p:column>
+
+								</p:dataTable></td>
+							<td width="2%"></td>
+							<td valign="top"><p:dataTable var="json" style="width:50%" rows="10"
+									paginator="true" paginatorPosition="top"
+									value="#{SubCategoryBean.subCategoryJsonList}">
+									<p:column styleClass="column20">
+										<f:facet name="header">
+											<h:outputLabel value="Edit"></h:outputLabel>
+										</f:facet>
+										<h:commandLink
+											action="#{SubCategoryBean.editSubCategoryAction}">
+											<h:graphicImage library="images/icons" name="edit.png"></h:graphicImage>
+											<f:setPropertyActionListener
+												target="#{SubCategoryBean.subCategoryJson}" value="#{json}"></f:setPropertyActionListener>
+										</h:commandLink>
+									</p:column>
+									<p:column styleClass="column20">
+										<f:facet name="header">
+											<h:outputLabel value="Delete"></h:outputLabel>
+										</f:facet>
+										<h:commandLink action="#{SubCategoryBean.deleteSubcategory}">
+											<h:graphicImage library="images/icons" name="deleteicon.png"></h:graphicImage>
+											<f:setPropertyActionListener
+												target="#{SubCategoryBean.subCategoryJson}" value="#{json}"></f:setPropertyActionListener>
+										</h:commandLink>
+									</p:column>
+									<p:column styleClass="column60">
+										<f:facet name="header">
+											<h:outputLabel value="Sub Category"></h:outputLabel>
+										</f:facet>
+										<h:outputLabel value="#{json.scDescription}"></h:outputLabel>
+									</p:column>
+									<p:column headerText="Quantity" styleClass="column20">
+										<h:outputLabel value="#{json.strQuantity}"></h:outputLabel>
+									</p:column>
+								</p:dataTable></td>
+						</tr>
+					</table>
+				</td>
+
+
+
+			</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</table>
+	</h:form>
+</h:body>
+</html>

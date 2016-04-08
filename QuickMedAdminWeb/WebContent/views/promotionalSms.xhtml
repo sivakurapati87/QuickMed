@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputScript library="js" name="script.js"></h:outputScript>
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<h:form enctype="multipart/form-data">
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+
+				<td align="center" class="headerDownBg"><h:outputLabel
+						value="Promotional SMS" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+		</table>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+			<tr style="height: 50px"></tr>
+			<tr style="height: 30px"></tr>
+			<tr>
+				<td colspan="3" align="center"><h:outputLabel
+						styleClass="errorMessage" value="#{PromotionalSmsBean.errMessage}"></h:outputLabel></td>
+			</tr>
+			<tr style="height: 5px"></tr>
+
+			<tr>
+				<td width="45%" align="right"><h:outputLabel
+						value="Purchased Amount(>=)" styleClass="labelfont225"></h:outputLabel></td>
+				<td width="1%"></td>
+				<td align="left" width="54%"><h:inputText
+						onkeypress="return validateFloat(event,this)"
+							styleClass="width725"
+						value="#{PromotionalSmsBean.amountPurchaged}"></h:inputText></td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td align="right" width="45%"><h:outputLabel
+						value="Coupon Code" styleClass="labelfont225"></h:outputLabel></td>
+				<td width="1%"></td>
+				<td align="left"><h:selectOneMenu styleClass="comboBoxStyle"
+						value="#{PromotionalSmsBean.selectedCoupon}">
+						<f:selectItem itemLabel="--Select--" itemValue="0"></f:selectItem>
+						<f:selectItems value="#{PromotionalSmsBean.couponList}"
+							var="coupon" itemLabel="#{coupon.couponCode}"
+							itemValue="#{coupon.couponCodeId}"></f:selectItems>
+					</h:selectOneMenu></td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td width="45%" align="right"><h:outputText value="Message"
+						styleClass="labelfont225"></h:outputText></td>
+				<td width="1%"></td>
+				<td align="left"><h:inputTextarea styleClass="width700" readonly="true"
+						value="#{PromotionalSmsBean.message}"></h:inputTextarea></td>
+			</tr>
+
+			<tr style="height: 20px"></tr>
+
+
+
+			<tr>
+				<td colspan="3" width="100%">
+					<table border="0" align="center" width="100%">
+						<tr>
+							<td align="right" width="45%"><h:commandButton
+									value="Send Sms"
+									action="#{PromotionalSmsBean.sendPromotionalSms}"
+									styleClass="refine_btn cmdBtnNew"></h:commandButton></td>
+							<td width="1%"></td>
+							<td><h:commandButton value="Cancel"
+									styleClass="refine_btn cmdBtnNew"
+									action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+
+
+
+
+			<tr style="height: 30px"></tr>
+			<tr>
+				<td colspan="3" align="center" width="80%"><p:dataTable
+						var="json" style="width:80%" paginator="true"
+						rowsPerPageTemplate="5,10,15,20,25,30" rows="5"
+						paginatorPosition="top"
+						value="#{PromotionalSmsBean.promotionalSMSJsonList}">
+						<p:column styleClass="column10">
+							<f:facet name="header">
+								<h:outputLabel value="Edit"></h:outputLabel>
+							</f:facet>
+							<h:commandLink action="#{PromotionalSmsBean.editPromotionalSms}">
+								<h:graphicImage library="images/icons" name="edit.png"></h:graphicImage>
+								<f:setPropertyActionListener
+									target="#{PromotionalSmsBean.promotionalSMSJson}"
+									value="#{json}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</p:column>
+						<p:column styleClass="column10" filterBy="#{json.purchasedAmount}">
+							<f:facet name="header">
+								<h:outputLabel value="Purchased Amount"></h:outputLabel>
+							</f:facet>
+							<h:outputLabel value="#{json.purchasedAmount}"></h:outputLabel>
+						</p:column>
+						<p:column styleClass="column20" filterBy="#{json.couponCode}">
+							<f:facet name="header">
+								<h:outputLabel value="Coupon Code"></h:outputLabel>
+							</f:facet>
+							<h:outputLabel value="#{json.couponCode}"></h:outputLabel>
+						</p:column>
+						<p:column styleClass="column40" filterBy="#{json.message}">
+							<f:facet name="header">
+								<h:outputLabel value="Message"></h:outputLabel>
+							</f:facet>
+							<h:outputLabel value="#{json.message}"></h:outputLabel>
+						</p:column>
+					</p:dataTable></td>
+			</tr>
+
+
+
+
+
+
+
+
+
+
+
+		</table>
+	</h:form>
+</h:body>
+</html>

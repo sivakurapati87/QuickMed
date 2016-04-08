@@ -1,0 +1,227 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Store To Door Grocer</title>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	</f:facet>
+</h:head>
+<h:body style="margin:0; padding:0;" styleClass="bg">
+	<h:outputScript library="js" name="script.js"></h:outputScript>
+	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
+	<f:loadBundle var="constant"
+		basename="com.intuiture.storetodoorgrocer.util.quantityType"></f:loadBundle>
+	<h:form>
+		<table cellpadding="0" cellspacing="0" align="center" border="0"
+			width="100%">
+
+			<ui:include src="header.xhtml"></ui:include>
+			<tr>
+
+				<td align="center" class="headerDownBg"><h:outputLabel
+						value="Orders Info" styleClass="labelheadingfont2"></h:outputLabel></td>
+
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td align="center">
+					<table>
+						<tr>
+							<td><h:commandButton value="Submit for Deliver"
+									styleClass="refine_btn cmdBtnNew" style="width:200px;"
+									action="#{OrdersBean.updateOrders}"></h:commandButton></td>
+							<td><h:commandButton value="Cancel"
+									styleClass="refine_btn cmdBtnNew"
+									action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td>
+
+					<table>
+						<ui:repeat var="searchJson"
+							value="#{OrdersBean.gridInfoJson.searchJsonList}">
+							<tr>
+								<td><h:selectOneMenu style="width:100%"
+										value="#{searchJson.selectedSearchFieldName}"
+										styleClass="comboBoxSearchBoxStyle">
+										<f:ajax listener="#{OrdersBean.onChangeSearchFieldNameAction}"
+											render="@form" execute="@form"></f:ajax>
+										<f:selectItems itemLabel="#{field.label}"
+											itemValue="#{field.value}" var="field"
+											value="#{searchJson.searchFieldList}"></f:selectItems>
+									</h:selectOneMenu></td>
+								<td width="10px"></td>
+								<td><h:selectOneMenu value="#{searchJson.selectedOperator}"
+										style="width:100%" styleClass="comboBoxSearchBoxStyle">
+										<f:selectItems itemLabel="#{operator.label}"
+											itemValue="#{operator.value}" var="operator"
+											value="#{searchJson.operatorsList}"></f:selectItems>
+									</h:selectOneMenu></td>
+								<td width="10px"></td>
+								<td><h:inputText styleClass="inputText2"
+										value="#{searchJson.searchValue}"></h:inputText></td>
+								<td width="20px"></td>
+								<td><h:commandButton value="Search"
+										style="height:34px;width:100px;"
+										action="#{OrdersBean.searchGoAction}" icon="ui-icon-check"></h:commandButton></td>
+							</tr>
+						</ui:repeat>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 10px"></tr>
+			<tr>
+				<td width="100%"><table width="100%" cellpadding="0"
+						cellspacing="0" border="0">
+						<tr>
+							<td width="65%" align="right" valign="top">
+								<div style="width: 100%; overflow: auto;">
+									<p:dataTable var="order" rows="10" paginator="true"
+										paginatorPosition="top" style="width:120%"
+										value="#{OrdersBean.totalOrdersList}">
+										<p:column styleClass="column5 align_center">
+											<f:facet name="header">
+												<p:selectBooleanCheckbox
+													value="#{OrdersBean.isTotalOrderSelected}">
+													<f:ajax listener="#{OrdersBean.onClickAllCheckboxAction}"
+														execute="@form" render="@form"></f:ajax>
+												</p:selectBooleanCheckbox>
+											</f:facet>
+											<p:selectBooleanCheckbox
+												value="#{order.isTotalOrderSelected}">
+												<f:ajax listener="#{OrdersBean.onClickCheckboxAction}"
+													execute="@form" render="@form"></f:ajax>
+											</p:selectBooleanCheckbox>
+										</p:column>
+										<p:column styleClass="column5">
+											<f:facet name="header">
+												<h:outputLabel value=" "></h:outputLabel>
+											</f:facet>
+											<h:commandLink action="#{OrdersBean.subGridAction}">
+												<f:param name="key" value="#{order.totalOrderId}"></f:param>
+												<h:graphicImage library="images/icons"
+													name="#{order.imageName}"></h:graphicImage>
+											</h:commandLink>
+										</p:column>
+										<p:column headerText="Customer Name"
+											styleClass="labelfont12 column10">
+											<h:outputLabel value="#{order.customerJson.fullName}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Order_Id"
+											styleClass="labelfont12 column15">
+											<h:outputLabel value="#{order.totalOrderGenId}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Customer Delivery Details"
+											styleClass="labelfont12 column20">
+											<h:outputLabel value="#{order.deliveryAddress}"
+												styleClass="link_lightblack"></h:outputLabel>
+											<br />
+											<h:outputLabel value="Phone : #{order.phoneNumber}"
+												styleClass="link_lightblack"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Order Date"
+											styleClass="labelfont12 column8 align_center">
+											<h:outputLabel value="#{order.orderDate}"
+												styleClass="labelfont12">
+												<f:convertDateTime pattern="dd-MMM-yyyy"></f:convertDateTime>
+											</h:outputLabel>
+										</p:column>
+										<p:column headerText="Total Purchase"
+											styleClass="labelfont12 column6 align_right">
+											<h:outputLabel value="#{order.totalPurchase}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Discount Amount"
+											styleClass="labelfont12 column6 align_right">
+											<h:outputLabel value="#{order.discountMoney}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Type of Order"
+											styleClass="labelfont12 column8">
+											<h:outputLabel value="#{order.typeOfOrder}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Transaction Id"
+											styleClass="labelfont12 column15">
+											<h:outputLabel value="#{order.txnId}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+										<p:column headerText="Location"
+											styleClass="labelfont12 column6">
+											<h:outputLabel value="#{order.location}"
+												styleClass="labelfont12"></h:outputLabel>
+										</p:column>
+									</p:dataTable>
+								</div>
+							</td>
+							<td width="1%"></td>
+							<td valign="top">
+								<div style="width: 100%; overflow: auto;">
+									<p:dataTable var="json" style="width:120%" rows="10"
+										paginator="true" paginatorPosition="top"
+										value="#{OrdersBean.totalOrdersJson.ordersList}">
+										<p:column headerText="D" styleClass="column5">
+											<h:commandLink action="#{OrdersBean.deleteOrder}">
+												<f:param name="key" value="#{json.addToCartId}"></f:param>
+												<h:graphicImage library="images/icons" name="deleteicon.png"></h:graphicImage>
+											</h:commandLink>
+										</p:column>
+										<p:column headerText="Item Name"
+											styleClass="labelfont12 column15">
+											<p:outputLabel value="#{json.addItemJson.itemName}"></p:outputLabel>
+											<p:outputLabel value="- #{json.addItemJson.description}"></p:outputLabel>
+										</p:column>
+										<p:column styleClass="column24">
+											<h:selectOneMenu style="font-size: 14px;width:146px;"
+												styleClass="labelfont12"
+												rendered="#{json.addItemJson.quantityType != constant.Single_Quantity}"
+												value="#{json.price}">
+												<f:ajax listener="#{OrdersBean.onChangeQntyComboChange}"
+													execute="@this" render="@form"></f:ajax>
+												<f:selectItems
+													value="#{json.addItemJson.multiQuantityComboList}"
+													var="multi" itemLabel="#{multi.label}"
+													itemValue="#{multi.value}"></f:selectItems>
+											</h:selectOneMenu>
+											<h:panelGroup
+												rendered="#{json.addItemJson.quantityType == constant.Single_Quantity}">
+												<h:outputLabel styleClass="labelfont12"
+													value="Rs. #{json.addItemJson.priceAfterDiscount}"></h:outputLabel>
+											</h:panelGroup>
+										</p:column>
+										<p:column headerText="Quantity"
+											styleClass="labelfont12 column15">
+											<p:spinner stepFactor="1" min="0" size="5"
+												value="#{json.quantity}"
+												onkeypress="return validateFloat(event,this)">
+												<f:ajax listener="#{OrdersBean.onChangeInputSpinner}"
+													execute="@this" render="@form"></f:ajax>
+											</p:spinner>
+										</p:column>
+										<p:column headerText="Sub Total"
+											styleClass="labelfont12 column10">
+											<p:outputLabel value="#{json.subTotal}"></p:outputLabel>
+										</p:column>
+									</p:dataTable>
+								</div>
+							</td>
+						</tr>
+					</table></td>
+			</tr>
+
+
+		</table>
+	</h:form>
+</h:body>
+</html>
+ -->
