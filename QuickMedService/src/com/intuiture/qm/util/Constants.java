@@ -15,6 +15,7 @@ public class Constants {
 	public static final double MIN_DELIVERY_CHARGE = 49;
 	public static final String PREFIX_GEN_ID = "QUICKMED_";
 	public static final String NUMBERS = "0123456789ABCD";
+	public static final String PLUS = "plus.png";
 	
 	public static final String ALGO = "AES";
 	public static final byte[] KEYVALUE = new byte[] { 'T', 'h', 'e', 'B', 'e', 's', 't', 'S', 'e', 'c', 'r', 'e', 't', 'K', 'e', 'y' };

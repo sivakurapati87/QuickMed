@@ -19,6 +19,7 @@ public class AddToCartJson {
 	private String itemName;
 	private String comment;
 	private Integer couponCodeId;
+	private ItemJson itemJson;
 
 	public Integer getAddToCartId() {
 		return addToCartId;
@@ -146,5 +147,13 @@ public class AddToCartJson {
 
 	public void setCouponCodeId(Integer couponCodeId) {
 		this.couponCodeId = couponCodeId;
+	}
+
+	public ItemJson getItemJson() {
+		return itemJson;
+	}
+
+	public void setItemJson(ItemJson itemJson) {
+		this.itemJson = itemJson;
 	}
 }

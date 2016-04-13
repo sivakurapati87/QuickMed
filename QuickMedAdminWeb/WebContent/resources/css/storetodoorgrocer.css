@@ -394,7 +394,7 @@
 }
 
 .bg {
-	background: url("#{resource['images/home:bgImg.png']}");
+	background: url("#{resource['images/home:bg.png']}");
 }
 
 .headerBg {

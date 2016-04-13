@@ -1,5 +1,7 @@
 package com.intuiture.qm.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.intuiture.qm.json.GridInfoJson;
 import com.intuiture.qm.json.TotalOrdersJson;
 import com.intuiture.qm.service.TotalOrdersService;
 
@@ -31,11 +34,11 @@ public class TotalOrdersController {
 		return totalOrderId;
 	}
 
-//	@RequestMapping(value = "/getTotalOrders", method = RequestMethod.POST)
-//	public @ResponseBody List<TotalOrdersJson> getTotalOrders(HttpServletRequest request, HttpServletResponse response, @RequestBody GridInfoJson gridInfoJson) {
-//		List<TotalOrdersJson> list = totalOrdersService.getTotalOrders(gridInfoJson);
-//		return list;
-//	}
+	@RequestMapping(value = "/getTotalOrders", method = RequestMethod.POST)
+	public @ResponseBody List<TotalOrdersJson> getTotalOrders(HttpServletRequest request, HttpServletResponse response, @RequestBody GridInfoJson gridInfoJson) {
+		List<TotalOrdersJson> list = totalOrdersService.getTotalOrders(gridInfoJson);
+		return list;
+	}
 //
 //	@RequestMapping(value = "/getTotalOrdersByCustomerId/{customerId}", method = RequestMethod.GET)
 //	public @ResponseBody List<TotalOrdersJson> getTotalOrdersByCustomerId(HttpServletRequest request, HttpServletResponse response, @PathVariable("customerId") Integer customerId) {

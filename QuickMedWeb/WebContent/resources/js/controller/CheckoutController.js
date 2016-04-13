@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('CheckoutController', ['$scope','$http','$rootScope','$state', function($scope,$http,$rootScope,$state) {
+App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$location", function($scope,$http,$rootScope,$state,$location) {
 	$rootScope.rsPageName = "checkout";
 	$location.hash('checkOutDivId');
 	

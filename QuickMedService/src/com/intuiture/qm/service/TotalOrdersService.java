@@ -1,14 +1,25 @@
 package com.intuiture.qm.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.intuiture.qm.dao.AddToCartRepository;
 import com.intuiture.qm.dao.CommonRepository;
+import com.intuiture.qm.dao.TotalOrdersRepository;
+import com.intuiture.qm.entity.AddToCart;
 import com.intuiture.qm.entity.TotalOrders;
+import com.intuiture.qm.json.AddToCartJson;
+import com.intuiture.qm.json.GridInfoJson;
 import com.intuiture.qm.json.TotalOrdersJson;
 import com.intuiture.qm.util.EnumUtils;
+import com.intuiture.qm.util.TransformDomainToJson;
 import com.intuiture.qm.util.TransformJsonToDomain;
 
 @Service
@@ -17,6 +28,10 @@ public class TotalOrdersService {
 	private static Logger LOG = Logger.getLogger(TotalOrdersService.class);
 	@Autowired
 	private CommonRepository commonRepository;
+	@Autowired
+	private AddToCartRepository addToCartRepository;
+	@Autowired
+	private TotalOrdersRepository totalOrdersRepository;
 
 	// @Transactional
 	// public Integer saveTotalOrders(TotalOrdersJson totalOrdersJson) {
@@ -88,51 +103,41 @@ public class TotalOrdersService {
 		return totalOrderId;
 	}
 
-	// public List<TotalOrdersJson> getTotalOrders(GridInfoJson gridInfoJson) {
-	// List<TotalOrdersJson> totalOrdersJsonList = new
-	// ArrayList<TotalOrdersJson>();
-	// try {
-	// // List<TotalOrders> list =
-	// // totalOrdersRepository.getAllTotalOrders(gridInfoJson);
-	// List<TotalOrders> list = (List<TotalOrders>)
-	// commonRepository.loadData(TotalOrders.class, gridInfoJson,
-	// Constants.TotalOrders.FINDALLCUSTOMERS);
-	// if (list != null && list.size() > 0) {
-	// List<Integer> totalOrderIds = new ArrayList<Integer>();
-	// for (TotalOrders totalOrders : list) {
-	// totalOrderIds.add(totalOrders.getTotalOrderId());
-	// }
-	// List<AddToCart> addToCartList =
-	// addToCartRepository.getAllOrderedItemsTotalOrderIds(totalOrderIds);
-	// Map<Integer, List<AddToCartJson>> totalOrderId_Map = new HashMap<Integer,
-	// List<AddToCartJson>>();
-	// if (addToCartList != null && addToCartList.size() > 0) {
-	// for (AddToCart cart : addToCartList) {
-	// AddToCartJson json =
-	// TransformDomainToJson.getAddToCartJsonFromAddToCart(cart);
-	// if (totalOrderId_Map.get(cart.getTotalOrderId()) != null) {
-	// totalOrderId_Map.get(cart.getTotalOrderId()).add(json);
-	// } else {
-	// List<AddToCartJson> addTocartJsonList = new ArrayList<AddToCartJson>();
-	// addTocartJsonList.add(json);
-	// totalOrderId_Map.put(cart.getTotalOrderId(), addTocartJsonList);
-	// }
-	// }
-	// }
-	// for (TotalOrders totalOrders : list) {
-	// TotalOrdersJson json =
-	// TransformDomainToJson.getTotalOrdersJsonFromTotalOrders(totalOrders);
-	// json.setOrdersList(totalOrderId_Map.get(json.getTotalOrderId()));
-	// totalOrdersJsonList.add(json);
-	// }
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// LOG.error("Error at getTotalOrders() in TotalOrdersService:" +
-	// e.getMessage(), e);
-	// }
-	// return totalOrdersJsonList;
-	// }
+	public List<TotalOrdersJson> getTotalOrders(GridInfoJson gridInfoJson) {
+		List<TotalOrdersJson> totalOrdersJsonList = new ArrayList<TotalOrdersJson>();
+		try {
+			List<TotalOrders> list = totalOrdersRepository.getAllTotalOrders(gridInfoJson);
+			if (list != null && list.size() > 0) {
+				List<Integer> totalOrderIds = new ArrayList<Integer>();
+				for (TotalOrders totalOrders : list) {
+					totalOrderIds.add(totalOrders.getTotalOrderId());
+				}
+				List<AddToCart> addToCartList = addToCartRepository.getAllOrderedItemsTotalOrderIds(totalOrderIds);
+				Map<Integer, List<AddToCartJson>> totalOrderId_Map = new HashMap<Integer, List<AddToCartJson>>();
+				if (addToCartList != null && addToCartList.size() > 0) {
+					for (AddToCart cart : addToCartList) {
+						AddToCartJson json = TransformDomainToJson.getAddToCartJson(cart);
+						if (totalOrderId_Map.get(cart.getTotalOrderId()) != null) {
+							totalOrderId_Map.get(cart.getTotalOrderId()).add(json);
+						} else {
+							List<AddToCartJson> addTocartJsonList = new ArrayList<AddToCartJson>();
+							addTocartJsonList.add(json);
+							totalOrderId_Map.put(cart.getTotalOrderId(), addTocartJsonList);
+						}
+					}
+				}
+				for (TotalOrders totalOrders : list) {
+					TotalOrdersJson json = TransformDomainToJson.getTotalOrdersJson(totalOrders);
+					json.setOrderList(totalOrderId_Map.get(json.getTotalOrderId()));
+					totalOrdersJsonList.add(json);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getTotalOrders() in TotalOrdersService:" + e.getMessage(), e);
+		}
+		return totalOrdersJsonList;
+	}
 	//
 	// public List<TotalOrdersJson> getTotalOrdersByCustomerId(Integer
 	// customerId) {

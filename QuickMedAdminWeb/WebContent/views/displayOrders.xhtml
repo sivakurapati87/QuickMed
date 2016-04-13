@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -13,8 +13,6 @@
 <h:body style="margin:0; padding:0;" styleClass="bg">
 	<h:outputScript library="js" name="script.js"></h:outputScript>
 	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
-	<f:loadBundle var="constant"
-		basename="com.intuiture.storetodoorgrocer.util.quantityType"></f:loadBundle>
 	<h:form>
 		<table cellpadding="0" cellspacing="0" align="center" border="0"
 			width="100%">
@@ -36,7 +34,7 @@
 									action="#{OrdersBean.updateOrders}"></h:commandButton></td>
 							<td><h:commandButton value="Cancel"
 									styleClass="refine_btn cmdBtnNew"
-									action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+									action="#{HomeBean.cancel}"></h:commandButton></td>
 						</tr>
 					</table>
 				</td>
@@ -113,7 +111,7 @@
 										</p:column>
 										<p:column headerText="Customer Name"
 											styleClass="labelfont12 column10">
-											<h:outputLabel value="#{order.customerJson.fullName}"
+											<h:outputLabel value="#{order.customerJson.firstName}"
 												styleClass="labelfont12"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Order_Id"
@@ -131,35 +129,24 @@
 										</p:column>
 										<p:column headerText="Order Date"
 											styleClass="labelfont12 column8 align_center">
-											<h:outputLabel value="#{order.orderDate}"
+											<h:outputLabel value="#{order.strOrderDate}"
 												styleClass="labelfont12">
-												<f:convertDateTime pattern="dd-MMM-yyyy"></f:convertDateTime>
 											</h:outputLabel>
 										</p:column>
 										<p:column headerText="Total Purchase"
 											styleClass="labelfont12 column6 align_right">
-											<h:outputLabel value="#{order.totalPurchase}"
-												styleClass="labelfont12"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Discount Amount"
 											styleClass="labelfont12 column6 align_right">
-											<h:outputLabel value="#{order.discountMoney}"
-												styleClass="labelfont12"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Type of Order"
 											styleClass="labelfont12 column8">
-											<h:outputLabel value="#{order.typeOfOrder}"
-												styleClass="labelfont12"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Transaction Id"
 											styleClass="labelfont12 column15">
-											<h:outputLabel value="#{order.txnId}"
-												styleClass="labelfont12"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Location"
 											styleClass="labelfont12 column6">
-											<h:outputLabel value="#{order.location}"
-												styleClass="labelfont12"></h:outputLabel>
 										</p:column>
 									</p:dataTable>
 								</div>
@@ -169,7 +156,7 @@
 								<div style="width: 100%; overflow: auto;">
 									<p:dataTable var="json" style="width:120%" rows="10"
 										paginator="true" paginatorPosition="top"
-										value="#{OrdersBean.totalOrdersJson.ordersList}">
+										value="#{OrdersBean.totalOrdersJson.orderList}">
 										<p:column headerText="D" styleClass="column5">
 											<h:commandLink action="#{OrdersBean.deleteOrder}">
 												<f:param name="key" value="#{json.addToCartId}"></f:param>
@@ -182,7 +169,7 @@
 											<p:outputLabel value="- #{json.addItemJson.description}"></p:outputLabel>
 										</p:column>
 										<p:column styleClass="column24">
-											<h:selectOneMenu style="font-size: 14px;width:146px;"
+											<!-- <h:selectOneMenu style="font-size: 14px;width:146px;"
 												styleClass="labelfont12"
 												rendered="#{json.addItemJson.quantityType != constant.Single_Quantity}"
 												value="#{json.price}">
@@ -197,7 +184,7 @@
 												rendered="#{json.addItemJson.quantityType == constant.Single_Quantity}">
 												<h:outputLabel styleClass="labelfont12"
 													value="Rs. #{json.addItemJson.priceAfterDiscount}"></h:outputLabel>
-											</h:panelGroup>
+											</h:panelGroup> -->
 										</p:column>
 										<p:column headerText="Quantity"
 											styleClass="labelfont12 column15">
@@ -224,4 +211,3 @@
 	</h:form>
 </h:body>
 </html>
- -->

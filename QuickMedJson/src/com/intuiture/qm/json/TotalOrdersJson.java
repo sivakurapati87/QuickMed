@@ -1,5 +1,7 @@
 package com.intuiture.qm.json;
 
+import java.util.List;
+
 /**
  * 
  * This class is to find-out the overall purchase of a customer for a particular
@@ -10,7 +12,7 @@ public class TotalOrdersJson {
 	private Integer totalOrderId;
 	private String totalOrderGenId;
 	private Integer customerId;
-//	private Double totalPurchase;
+	// private Double totalPurchase;
 	private Integer couponCodeId;
 	private Double subTotal;
 	private Double totalAmount;
@@ -21,6 +23,13 @@ public class TotalOrdersJson {
 	private String transactionId;
 	private Boolean isDelivered;
 	private Boolean isItemInvoiced;
+	private String deliveryAddress;
+	private String imageName;
+	private Long phoneNumber;
+	private Boolean isTotalOrderSelected;
+	private CustomerJson customerJson;
+	private List<AddToCartJson> orderList;
+	private String strOrderDate;
 
 	public Integer getTotalOrderId() {
 		return totalOrderId;
@@ -46,13 +55,13 @@ public class TotalOrdersJson {
 		this.customerId = customerId;
 	}
 
-//	public Double getTotalPurchase() {
-//		return totalPurchase;
-//	}
-//
-//	public void setTotalPurchase(Double totalPurchase) {
-//		this.totalPurchase = totalPurchase;
-//	}
+	// public Double getTotalPurchase() {
+	// return totalPurchase;
+	// }
+	//
+	// public void setTotalPurchase(Double totalPurchase) {
+	// this.totalPurchase = totalPurchase;
+	// }
 
 	public Integer getCouponCodeId() {
 		return couponCodeId;
@@ -132,6 +141,62 @@ public class TotalOrdersJson {
 
 	public void setIsItemInvoiced(Boolean isItemInvoiced) {
 		this.isItemInvoiced = isItemInvoiced;
+	}
+
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+
+	public void setDeliveryAddress(String deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public CustomerJson getCustomerJson() {
+		return customerJson;
+	}
+
+	public void setCustomerJson(CustomerJson customerJson) {
+		this.customerJson = customerJson;
+	}
+
+	public List<AddToCartJson> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<AddToCartJson> orderList) {
+		this.orderList = orderList;
+	}
+
+	public Boolean getIsTotalOrderSelected() {
+		return isTotalOrderSelected;
+	}
+
+	public void setIsTotalOrderSelected(Boolean isTotalOrderSelected) {
+		this.isTotalOrderSelected = isTotalOrderSelected;
+	}
+
+	public String getStrOrderDate() {
+		return strOrderDate;
+	}
+
+	public void setStrOrderDate(String strOrderDate) {
+		this.strOrderDate = strOrderDate;
 	}
 
 }

@@ -792,9 +792,10 @@ public class CommonUtil {
 		List<TotalOrdersJson> totalOrdersJsonList = null;
 		try {
 			RestTemplate restTemplate = new RestTemplate();
+			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(gridInfoJson, encodedHeader());
 			ParameterizedTypeReference<List<TotalOrdersJson>> typeRef = new ParameterizedTypeReference<List<TotalOrdersJson>>() {
 			};
-			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(gridInfoJson);
+//			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(gridInfoJson);
 			ResponseEntity<List<TotalOrdersJson>> result = restTemplate.exchange(url, HttpMethod.POST, httpEntity, typeRef);
 			totalOrdersJsonList = result.getBody();
 
@@ -809,9 +810,10 @@ public class CommonUtil {
 		List<TotalOrdersJson> totalOrdersJsonList = null;
 		try {
 			RestTemplate restTemplate = new RestTemplate();
+			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(encodedHeader());
 			ParameterizedTypeReference<List<TotalOrdersJson>> typeRef = new ParameterizedTypeReference<List<TotalOrdersJson>>() {
 			};
-			ResponseEntity<List<TotalOrdersJson>> result = restTemplate.exchange(url + "/" + locationId, HttpMethod.GET, null, typeRef);
+			ResponseEntity<List<TotalOrdersJson>> result = restTemplate.exchange(url + "/" + locationId, HttpMethod.GET, httpEntity, typeRef);
 			totalOrdersJsonList = result.getBody();
 
 		} catch (Exception e) {

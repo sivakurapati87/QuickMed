@@ -5,12 +5,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.intuiture.qm.entity.AddToCart;
 import com.intuiture.qm.entity.Admin;
 import com.intuiture.qm.entity.Customer;
 import com.intuiture.qm.entity.Item;
 import com.intuiture.qm.entity.LookUpDetails;
 import com.intuiture.qm.entity.Module;
 import com.intuiture.qm.entity.SubModule;
+import com.intuiture.qm.entity.TotalOrders;
+import com.intuiture.qm.json.AddToCartJson;
 import com.intuiture.qm.json.AdminJson;
 import com.intuiture.qm.json.ComboJson;
 import com.intuiture.qm.json.CustomerDeliveryAddressJson;
@@ -19,6 +22,7 @@ import com.intuiture.qm.json.ItemJson;
 import com.intuiture.qm.json.LookUpDetailJson;
 import com.intuiture.qm.json.ModuleJson;
 import com.intuiture.qm.json.SubModuleJson;
+import com.intuiture.qm.json.TotalOrdersJson;
 
 public class TransformDomainToJson {
 	private static Logger LOG = Logger.getLogger(TransformDomainToJson.class);
@@ -141,5 +145,75 @@ public class TransformDomainToJson {
 			LOG.error("Error at getLookUpDetailJson() in TransformDomainToJson:" + e.getMessage(), e);
 		}
 		return json;
+	}
+
+	public static TotalOrdersJson getTotalOrdersJson(TotalOrders totalOrders) {
+		TotalOrdersJson totalOrdersJson = new TotalOrdersJson();
+		try {
+			totalOrdersJson.setComments(totalOrders.getComments());
+			totalOrdersJson.setCouponCodeId(totalOrders.getCouponCodeId());
+			totalOrdersJson.setCustomerId(totalOrders.getCustomerId());
+			totalOrdersJson.setDeliveryCharges(totalOrders.getDeliveryCharges());
+			// totalOrdersJson.setDiscountMoney(totalOrders.getDiscountAmount());
+			// totalOrdersJson.setTxnId(totalOrders.getTransactionId());
+			totalOrdersJson.setIsDeleted(totalOrders.getIsDeleted());
+			// totalOrdersJson.setOrderDate(totalOrders.getOrderDate());
+			totalOrdersJson.setSubTotal(totalOrders.getSubTotal());
+			totalOrdersJson.setTotalOrderId(totalOrders.getTotalOrderId());
+			// totalOrdersJson.setTotalPurchase(totalOrders.getTotalPurchase());
+			totalOrdersJson.setTotalOrderGenId(totalOrders.getTotalOrderGenId());
+			// totalOrdersJson.setTypeOfOrderId(totalOrders.getTypeOfOrderId());
+			totalOrdersJson.setImageName(Constants.PLUS);
+			totalOrdersJson.setIsDelivered(totalOrders.getIsDelivered());
+			totalOrdersJson.setStrOrderDate(MethodUtil.convertDateToString(totalOrders.getOrderDate()));
+			// totalOrdersJson.setIsTotalOrderSelected(Boolean.FALSE);
+			totalOrdersJson.setIsItemInvoiced(totalOrders.getIsItemInvoiced());
+			// totalOrdersJson.setLocationId(totalOrders.getLocationId());
+			// if (totalOrders.getLocationDetails() != null) {
+			// totalOrdersJson.setLocation(totalOrders.getLocationDetails().getDescription());
+			// }
+			if (totalOrders.getCustomerDeliveryAddress() != null) {
+				totalOrdersJson.setDeliveryAddress(totalOrders.getCustomerDeliveryAddress().getAddress());
+			}
+			if (totalOrders.getCustomer() != null) {
+				totalOrdersJson.setPhoneNumber(totalOrders.getCustomer().getPhoneNumber());
+			}
+			// if (totalOrders.getLookUpDetails() != null) {
+			// totalOrdersJson.setTypeOfOrder(totalOrders.getLookUpDetails().getDescription());
+			// }
+			if (totalOrders.getCustomer() != null) {
+				totalOrdersJson.setCustomerJson(getCustomerJson(totalOrders.getCustomer()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getTotalOrdersJsonFromTotalOrders() in TransformDomainToJson:" + e.getMessage(), e);
+		}
+		return totalOrdersJson;
+	}
+
+	public static AddToCartJson getAddToCartJson(AddToCart addToCart) {
+		AddToCartJson addToCartJson = new AddToCartJson();
+		try {
+			addToCartJson.setAddToCartId(addToCart.getAddToCartId());
+			addToCartJson.setCustomerId(addToCart.getCustomerId());
+			addToCartJson.setIsItemRemovedFromCart(addToCart.getIsItemRemovedFromCart());
+			addToCartJson.setItemId(addToCart.getItemId());
+			addToCartJson.setOrderDate(addToCart.getOrderDate());
+			addToCartJson.setPrice(addToCart.getPrice());
+			addToCartJson.setQuantity(addToCart.getQuantity());
+			// addToCartJson.setSavings(addToCart.getSavings());
+			addToCartJson.setTotalOrderId(addToCart.getTotalOrderId());
+			addToCartJson.setSubTotal(addToCart.getSubTotal());
+			// addToCartJson.setMinSavings(addToCart.getMinSavings());
+			addToCartJson.setIsItemDelivered(addToCart.getIsItemDelivered());
+			// addToCartJson.setIsCartItemSelected(Boolean.FALSE);
+			if (addToCart.getItem() != null) {
+				addToCartJson.setItemJson(getItemJson(addToCart.getItem()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getAddToCartJsonFromAddToCart() in TransformDomainToJson:" + e.getMessage(), e);
+		}
+		return addToCartJson;
 	}
 }
