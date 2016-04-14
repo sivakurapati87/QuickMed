@@ -141,9 +141,8 @@ public class OrdersManagedBean extends OrdersBean {
 						if (json.getImageName().equalsIgnoreCase(Constants.PLUS)) {
 							json.setImageName(Constants.MINUS);
 							setTotalOrdersJson(json);
-							// if (json.getOrdersList() == null)
-							// json.setOrdersList(CommonUtil.getAllOrderedItemsCustomerId(json.getCustomerId(),
-							// totalOrderId));
+							if (json.getOrderList() == null)
+								json.setOrderList(CommonUtil.getAllOrderedItemsCustomerId(json.getCustomerId(), totalOrderId));
 						} else {
 							json.setImageName(Constants.PLUS);
 						}

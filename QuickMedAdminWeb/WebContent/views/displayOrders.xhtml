@@ -33,8 +33,7 @@
 									styleClass="refine_btn cmdBtnNew" style="width:200px;"
 									action="#{OrdersBean.updateOrders}"></h:commandButton></td>
 							<td><h:commandButton value="Cancel"
-									styleClass="refine_btn cmdBtnNew"
-									action="#{HomeBean.cancel}"></h:commandButton></td>
+									styleClass="refine_btn cmdBtnNew" action="#{HomeBean.cancel}"></h:commandButton></td>
 						</tr>
 					</table>
 				</td>
@@ -135,18 +134,19 @@
 										</p:column>
 										<p:column headerText="Total Purchase"
 											styleClass="labelfont12 column6 align_right">
+											<h:outputLabel value="#{order.totalAmount}"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Discount Amount"
 											styleClass="labelfont12 column6 align_right">
+											<h:outputLabel value="#{order.discountAmount}"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Type of Order"
 											styleClass="labelfont12 column8">
+											<h:outputLabel value="#{order.typeOfOrder}"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Transaction Id"
 											styleClass="labelfont12 column15">
-										</p:column>
-										<p:column headerText="Location"
-											styleClass="labelfont12 column6">
+												<h:outputLabel value="#{order.transactionId}"></h:outputLabel>
 										</p:column>
 									</p:dataTable>
 								</div>
@@ -165,35 +165,11 @@
 										</p:column>
 										<p:column headerText="Item Name"
 											styleClass="labelfont12 column15">
-											<p:outputLabel value="#{json.addItemJson.itemName}"></p:outputLabel>
-											<p:outputLabel value="- #{json.addItemJson.description}"></p:outputLabel>
-										</p:column>
-										<p:column styleClass="column24">
-											<!-- <h:selectOneMenu style="font-size: 14px;width:146px;"
-												styleClass="labelfont12"
-												rendered="#{json.addItemJson.quantityType != constant.Single_Quantity}"
-												value="#{json.price}">
-												<f:ajax listener="#{OrdersBean.onChangeQntyComboChange}"
-													execute="@this" render="@form"></f:ajax>
-												<f:selectItems
-													value="#{json.addItemJson.multiQuantityComboList}"
-													var="multi" itemLabel="#{multi.label}"
-													itemValue="#{multi.value}"></f:selectItems>
-											</h:selectOneMenu>
-											<h:panelGroup
-												rendered="#{json.addItemJson.quantityType == constant.Single_Quantity}">
-												<h:outputLabel styleClass="labelfont12"
-													value="Rs. #{json.addItemJson.priceAfterDiscount}"></h:outputLabel>
-											</h:panelGroup> -->
+											<p:outputLabel value="#{json.itemJson.itemName}"></p:outputLabel>
 										</p:column>
 										<p:column headerText="Quantity"
 											styleClass="labelfont12 column15">
-											<p:spinner stepFactor="1" min="0" size="5"
-												value="#{json.quantity}"
-												onkeypress="return validateFloat(event,this)">
-												<f:ajax listener="#{OrdersBean.onChangeInputSpinner}"
-													execute="@this" render="@form"></f:ajax>
-											</p:spinner>
+											<h:outputLabel value="#{json.quantity}"></h:outputLabel>
 										</p:column>
 										<p:column headerText="Sub Total"
 											styleClass="labelfont12 column10">

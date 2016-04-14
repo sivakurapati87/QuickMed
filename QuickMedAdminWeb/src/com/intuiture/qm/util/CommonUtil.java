@@ -795,7 +795,8 @@ public class CommonUtil {
 			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(gridInfoJson, encodedHeader());
 			ParameterizedTypeReference<List<TotalOrdersJson>> typeRef = new ParameterizedTypeReference<List<TotalOrdersJson>>() {
 			};
-//			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(gridInfoJson);
+			// HttpEntity<GridInfoJson> httpEntity = new
+			// HttpEntity<GridInfoJson>(gridInfoJson);
 			ResponseEntity<List<TotalOrdersJson>> result = restTemplate.exchange(url, HttpMethod.POST, httpEntity, typeRef);
 			totalOrdersJsonList = result.getBody();
 
@@ -810,7 +811,7 @@ public class CommonUtil {
 		List<TotalOrdersJson> totalOrdersJsonList = null;
 		try {
 			RestTemplate restTemplate = new RestTemplate();
-			HttpEntity<GridInfoJson> httpEntity = new HttpEntity<GridInfoJson>(encodedHeader());
+			HttpEntity<String> httpEntity = new HttpEntity<String>(encodedHeader());
 			ParameterizedTypeReference<List<TotalOrdersJson>> typeRef = new ParameterizedTypeReference<List<TotalOrdersJson>>() {
 			};
 			ResponseEntity<List<TotalOrdersJson>> result = restTemplate.exchange(url + "/" + locationId, HttpMethod.GET, httpEntity, typeRef);
@@ -827,10 +828,11 @@ public class CommonUtil {
 		List<AddToCartJson> addToCartJsonList = null;
 		try {
 			RestTemplate restTemplate = new RestTemplate();
+			HttpEntity<String> httpEntity = new HttpEntity<String>(encodedHeader());
 			ParameterizedTypeReference<List<AddToCartJson>> typeRef = new ParameterizedTypeReference<List<AddToCartJson>>() {
 			};
 			ResponseEntity<List<AddToCartJson>> result = restTemplate.exchange(Constants.AddToCartController.GETALLORDEREDITEMSBYCUSTOMERIDANDTOTALID + "?customerId="
-					+ customerId + "&totalOrderId=" + totalOrderId, HttpMethod.GET, null, typeRef);
+					+ customerId + "&totalOrderId=" + totalOrderId, HttpMethod.GET, httpEntity, typeRef);
 			addToCartJsonList = result.getBody();
 
 		} catch (Exception e) {

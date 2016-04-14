@@ -20,6 +20,7 @@ public class TotalOrdersJson {
 	private Double discountAmount;
 	private Boolean isDeleted;
 	private String comments;
+	private String typeOfOrder;
 	private String transactionId;
 	private Boolean isDelivered;
 	private Boolean isItemInvoiced;
@@ -197,6 +198,14 @@ public class TotalOrdersJson {
 
 	public void setStrOrderDate(String strOrderDate) {
 		this.strOrderDate = strOrderDate;
+	}
+
+	public String getTypeOfOrder() {
+		return typeOfOrder;
+	}
+
+	public void setTypeOfOrder(String typeOfOrder) {
+		this.typeOfOrder = typeOfOrder;
 	}
 
 }

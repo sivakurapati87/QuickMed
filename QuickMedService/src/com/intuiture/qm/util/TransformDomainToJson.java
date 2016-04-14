@@ -158,9 +158,11 @@ public class TransformDomainToJson {
 			// totalOrdersJson.setTxnId(totalOrders.getTransactionId());
 			totalOrdersJson.setIsDeleted(totalOrders.getIsDeleted());
 			// totalOrdersJson.setOrderDate(totalOrders.getOrderDate());
+			totalOrdersJson.setTypeOfOrder(totalOrders.getTypeOfOrder());
 			totalOrdersJson.setSubTotal(totalOrders.getSubTotal());
 			totalOrdersJson.setTotalOrderId(totalOrders.getTotalOrderId());
-			// totalOrdersJson.setTotalPurchase(totalOrders.getTotalPurchase());
+			totalOrdersJson.setTotalAmount(totalOrders.getTotalAmount());
+			totalOrdersJson.setDiscountAmount(totalOrders.getDiscountAmount());
 			totalOrdersJson.setTotalOrderGenId(totalOrders.getTotalOrderGenId());
 			// totalOrdersJson.setTypeOfOrderId(totalOrders.getTypeOfOrderId());
 			totalOrdersJson.setImageName(Constants.PLUS);

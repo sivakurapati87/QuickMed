@@ -1,5 +1,6 @@
 package com.intuiture.qm.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.intuiture.qm.dao.AddToCartRepository;
 import com.intuiture.qm.dao.CommonRepository;
 import com.intuiture.qm.entity.AddToCart;
 import com.intuiture.qm.entity.TotalOrders;
@@ -15,6 +17,7 @@ import com.intuiture.qm.json.AddToCartJson;
 import com.intuiture.qm.util.Constants;
 import com.intuiture.qm.util.EnumUtils;
 import com.intuiture.qm.util.MethodUtil;
+import com.intuiture.qm.util.TransformDomainToJson;
 import com.intuiture.qm.util.TransformJsonToDomain;
 
 @Service
@@ -23,6 +26,8 @@ public class AddToCartService {
 	private static final Logger LOG = Logger.getLogger(AddToCartService.class);
 	@Autowired
 	private CommonRepository commonRepository;
+	@Autowired
+	private AddToCartRepository addToCartRepository;
 
 	public Integer placeCashOnDeliveryOrders(List<AddToCartJson> addToCartJsonList) {
 		Integer totalOrderId = null;
@@ -67,5 +72,23 @@ public class AddToCartService {
 			LOG.error("Error at placeCashOnDeliveryTotalOrder() in TotalOrdersService:" + e.getMessage(), e);
 		}
 		return totalOrderId;
+	}
+
+	public List<AddToCartJson> getAllOrderedItemsCustomerIdAndTotalId(Integer customerId, Integer totalOrderId) {
+		List<AddToCartJson> addToCartJsonList = null;
+		try {
+			List<AddToCart> addToCartList = addToCartRepository.getAllOrderedItemsCustomerIdAndTotalOrderId(customerId, totalOrderId);
+			if (addToCartList != null && addToCartList.size() > 0) {
+				addToCartJsonList = new ArrayList<AddToCartJson>();
+				for (AddToCart addToCart : addToCartList) {
+					AddToCartJson addToCartJson = TransformDomainToJson.getAddToCartJson(addToCart);
+					addToCartJsonList.add(addToCartJson);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getAllOrderedItemsCustomerIdAndTotalId() in AddToCartService:" + e.getMessage(), e);
+		}
+		return addToCartJsonList;
 	}
 }
