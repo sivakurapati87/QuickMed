@@ -15,7 +15,20 @@ public class AdminRepository extends BaseRepository {
 		Admin admin = null;
 		try {
 			Criteria criteria = getSession().createCriteria(Admin.class);
-			criteria.add(Restrictions.and((Restrictions.eq("userName", username)), Restrictions.eq("password", password)));
+			criteria.add(Restrictions.and((Restrictions.eq("userName", username)), Restrictions.eq("password", password), Restrictions.eq("isDeleted", Boolean.FALSE)));
+			admin = (Admin) criteria.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+		}
+		return admin;
+	}
+
+	public Admin checkUserNameExists(String username) {
+		Admin admin = null;
+		try {
+			Criteria criteria = getSession().createCriteria(Admin.class);
+			criteria.add(Restrictions.eq("userName", username));
 			admin = (Admin) criteria.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -91,4 +91,64 @@ public class AddToCartService {
 		}
 		return addToCartJsonList;
 	}
+
+	public Boolean removeCartItem(Integer cartId) {
+		Boolean isItemRemoved = false;
+		try {
+			AddToCart addToCart = (AddToCart) commonRepository.findById(cartId, AddToCart.class);
+			addToCart.setIsItemRemovedFromCart(Boolean.TRUE);
+			addToCart.setIsItemOrdered(Boolean.FALSE);
+			if (addToCart.getTotalOrders() != null) {
+				addToCart.getTotalOrders().setSubTotal(addToCart.getTotalOrders().getSubTotal() - addToCart.getSubTotal());
+				if (addToCart.getTotalOrders().getDiscountAmount() != null & addToCart.getTotalOrders().getDiscountAmount() > 0) {
+					addToCart.getTotalOrders().setDiscountAmount(addToCart.getTotalOrders().getDiscountAmount() - addToCart.getDiscount());
+				}
+				addToCart.getTotalOrders().setTotalAmount(addToCart.getTotalOrders().getTotalAmount() - addToCart.getPrice());
+			}
+
+			commonRepository.update(addToCart);
+
+			isItemRemoved = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at removeCartItem() in AddToCartService:" + e.getMessage(), e);
+		}
+		return isItemRemoved;
+	}
+
+	public Boolean makeAnItemToDelivered(AddToCartJson addToCartJson) {
+		Boolean isItemDelivered = false;
+		try {
+			AddToCart addToCart = (AddToCart) commonRepository.findById(addToCartJson.getAddToCartId(), AddToCart.class);
+			addToCart = TransformJsonToDomain.getAddToCart(addToCart, addToCartJson);
+			addToCart.setIsItemRemovedFromCart(Boolean.TRUE);
+			addToCart.setIsItemDelivered(Boolean.TRUE);
+			addToCart.setIsItemOrdered(Boolean.TRUE);
+			addToCart.setTotalOrderId(addToCartJson.getTotalOrderId());
+			commonRepository.update(addToCart);
+			isItemDelivered = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at makeAnItemToDelivered() in AddToCartService:" + e.getMessage(), e);
+		}
+		return isItemDelivered;
+	}
+
+	public List<AddToCartJson> getAllDeliverableOrderItems(Integer totalOrderId) {
+		List<AddToCartJson> addToCartJsonList = null;
+		try {
+			List<AddToCart> addToCartList = addToCartRepository.getAllDeliverableOrderItems(totalOrderId);
+			if (addToCartList != null && addToCartList.size() > 0) {
+				addToCartJsonList = new ArrayList<AddToCartJson>();
+				for (AddToCart addToCart : addToCartList) {
+					AddToCartJson addToCartJson = TransformDomainToJson.getAddToCartJson(addToCart);
+					addToCartJsonList.add(addToCartJson);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getAllDeliverableOrderItems() in AddToCartService:" + e.getMessage(), e);
+		}
+		return addToCartJsonList;
+	}
 }

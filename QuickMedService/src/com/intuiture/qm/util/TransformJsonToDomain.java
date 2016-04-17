@@ -5,9 +5,11 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 
 import com.intuiture.qm.entity.AddToCart;
+import com.intuiture.qm.entity.Admin;
 import com.intuiture.qm.entity.Customer;
 import com.intuiture.qm.entity.TotalOrders;
 import com.intuiture.qm.json.AddToCartJson;
+import com.intuiture.qm.json.AdminJson;
 import com.intuiture.qm.json.CustomerJson;
 import com.intuiture.qm.json.TotalOrdersJson;
 
@@ -35,6 +37,17 @@ public class TransformJsonToDomain {
 			e.printStackTrace();
 			LOG.error(e.getMessage(), e);
 		}
+	}
+
+	public static void getAdmin(Admin admin, AdminJson adminJson) {
+		if (adminJson.getAdminId() != null) {
+			admin.setUpdatedOn(new Date());
+		} else {
+			admin.setCreatedOn(new Date());
+		}
+		admin.setPassword(MethodUtil.passwordEncryption(adminJson.getPassword()));
+		admin.setUserName(adminJson.getUserName());
+		admin.setIsDeleted(Boolean.FALSE);
 	}
 
 	public static TotalOrders getTotalOrderFromJson(TotalOrders totalOrders, TotalOrdersJson totalOrdersJson) {

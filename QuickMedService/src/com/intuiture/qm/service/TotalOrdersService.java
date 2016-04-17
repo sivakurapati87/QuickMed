@@ -1,6 +1,7 @@
 package com.intuiture.qm.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intuiture.qm.dao.AddToCartRepository;
 import com.intuiture.qm.dao.CommonRepository;
+import com.intuiture.qm.dao.CustomerRepository;
 import com.intuiture.qm.dao.TotalOrdersRepository;
 import com.intuiture.qm.entity.AddToCart;
+import com.intuiture.qm.entity.CustomerDeliveryAddress;
 import com.intuiture.qm.entity.TotalOrders;
 import com.intuiture.qm.json.AddToCartJson;
 import com.intuiture.qm.json.GridInfoJson;
@@ -32,52 +35,25 @@ public class TotalOrdersService {
 	private AddToCartRepository addToCartRepository;
 	@Autowired
 	private TotalOrdersRepository totalOrdersRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
-	// @Transactional
-	// public Integer saveTotalOrders(TotalOrdersJson totalOrdersJson) {
-	// Integer totalOrderId = null;
-	// try {
-	// TotalOrders totalOrders = null;
-	// if (totalOrdersJson.getTotalOrderId() != null) {
-	// totalOrders = (TotalOrders)
-	// commonRepository.findById(totalOrdersJson.getTotalOrderId(),
-	// TotalOrders.class);
-	// } else {
-	// totalOrders = new TotalOrders();
-	// }
-	// TransformJsonToDomain.getTotalOrderFromJson(totalOrders,
-	// totalOrdersJson);
-	// if (totalOrdersJson.getTotalOrderId() != null) {
-	// totalOrders.setUpdateOn(new Date());
-	// totalOrdersRepository.merge(totalOrders);
-	// } else {
-	// totalOrdersRepository.persist(totalOrders);
-	// }
-	// totalOrderId = totalOrders.getTotalOrderId();
-	// Calendar cal = Calendar.getInstance();
-	// cal.setTime(totalOrdersJson.getOrderDate());
-	// Integer year = cal.get(Calendar.YEAR);
-	// CustomerYearlyPurchase customerYearlyPurchase =
-	// customerYearlyPurchaseRepository.findByYearAndCustomerId(totalOrdersJson.getCustomerId(),
-	// year);
-	// if (customerYearlyPurchase != null) {
-	// customerYearlyPurchase.setYearlyPurchase(customerYearlyPurchase.getYearlyPurchase()
-	// + totalOrdersJson.getTotalPurchase());
-	// customerYearlyPurchaseRepository.update(customerYearlyPurchase);
-	// } else {
-	// customerYearlyPurchase = new CustomerYearlyPurchase();
-	// customerYearlyPurchase.setCustomerId(totalOrdersJson.getCustomerId());
-	// customerYearlyPurchase.setYear(year);
-	// customerYearlyPurchase.setYearlyPurchase(totalOrdersJson.getTotalPurchase());
-	// customerYearlyPurchaseRepository.save(customerYearlyPurchase);
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// LOG.error("Error at saveTotalOrders() in TotalOrdersService:" +
-	// e.getMessage(), e);
-	// }
-	// return totalOrderId;
-	// }
+	public Integer sendTheOrderForDelivery(TotalOrdersJson totalOrdersJson) {
+		Integer totalOrderId = null;
+		try {
+			TotalOrders totalOrders = null;
+			if (totalOrdersJson.getTotalOrderId() != null) {
+				totalOrders = (TotalOrders) commonRepository.findById(totalOrdersJson.getTotalOrderId(), TotalOrders.class);
+				TransformJsonToDomain.getTotalOrderFromJson(totalOrders, totalOrdersJson);
+				totalOrders.setUpdateOn(new Date());
+				commonRepository.update(totalOrders);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at saveTotalOrders() in TotalOrdersService:" + e.getMessage(), e);
+		}
+		return totalOrderId;
+	}
 
 	public Integer placeCashOnDeliveryTotalOrder(TotalOrdersJson totalOrdersJson) {
 		Integer totalOrderId = null;
@@ -138,6 +114,7 @@ public class TotalOrdersService {
 		}
 		return totalOrdersJsonList;
 	}
+
 	//
 	// public List<TotalOrdersJson> getTotalOrdersByCustomerId(Integer
 	// customerId) {
@@ -185,65 +162,53 @@ public class TotalOrdersService {
 	// return totalOrdersJsonList;
 	// }
 	//
-	// @Transactional
-	// public Boolean removeTotalOrder(Integer totalOrderId) {
-	// Boolean isOrderRemoved = false;
-	// try {
-	// TotalOrders totalOrders =
-	// totalOrdersRepository.getTotalOrderById(totalOrderId);
-	// totalOrders.setIsDeleted(Boolean.TRUE);
-	// totalOrdersRepository.merge(totalOrders);
-	// CustomerDeliveryAddress customerDeliveryAddress =
-	// customerRepository.findAddressByTotalOrderId(totalOrderId);
-	// customerDeliveryAddress.setIsDeleted(Boolean.TRUE);
-	// customerRepository.mergeCustomerAddress(customerDeliveryAddress);
-	// isOrderRemoved = true;
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// LOG.error("Error at removeTotalOrder() in TotalOrdersService:" +
-	// e.getMessage(), e);
-	// }
-	// return isOrderRemoved;
-	// }
-	//
-	// @Transactional
-	// public Boolean removeItemFromInvoice(Integer totalOrderId) {
-	// Boolean isOrderInvoiced = false;
-	// try {
-	// TotalOrders totalOrders =
-	// totalOrdersRepository.getTotalOrderById(totalOrderId);
-	// totalOrders.setIsItemInvoiced(Boolean.TRUE);
-	// totalOrdersRepository.merge(totalOrders);
-	// CustomerDeliveryAddress customerDeliveryAddress =
-	// customerRepository.findAddressByTotalOrderId(totalOrderId);
-	// customerDeliveryAddress.setIsDeleted(Boolean.TRUE);
-	// customerRepository.mergeCustomerAddress(customerDeliveryAddress);
-	// isOrderInvoiced = true;
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// LOG.error("Error at removeItemFromInvoice() in TotalOrdersService:" +
-	// e.getMessage(), e);
-	// }
-	// return isOrderInvoiced;
-	// }
-	//
-	// public List<TotalOrdersJson> getDeliveredTotalOrders(Integer locationId)
-	// {
-	// List<TotalOrdersJson> totalOrdersJsonList = new
-	// ArrayList<TotalOrdersJson>();
-	// try {
-	// List<TotalOrders> list =
-	// totalOrdersRepository.getDeliveredTotalOrders(locationId);
-	// if (list != null && list.size() > 0) {
-	// for (TotalOrders totalOrders : list) {
-	// totalOrdersJsonList.add(TransformDomainToJson.getTotalOrdersJsonFromTotalOrders(totalOrders));
-	// }
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// LOG.error("Error at getDeliveredTotalOrders() in TotalOrdersService:" +
-	// e.getMessage(), e);
-	// }
-	// return totalOrdersJsonList;
-	// }
+	public Boolean removeTotalOrder(Integer totalOrderId) {
+		Boolean isOrderRemoved = false;
+		try {
+			TotalOrders totalOrders = (TotalOrders) commonRepository.findById(totalOrderId, TotalOrders.class);
+			totalOrders.setIsDeleted(Boolean.TRUE);
+			commonRepository.update(totalOrders);
+			CustomerDeliveryAddress customerDeliveryAddress = customerRepository.findAddressByTotalOrderId(totalOrderId);
+			customerDeliveryAddress.setIsDeleted(Boolean.TRUE);
+			commonRepository.update(customerDeliveryAddress);
+			isOrderRemoved = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at removeTotalOrder() in TotalOrdersService:" + e.getMessage(), e);
+		}
+		return isOrderRemoved;
+	}
+
+	public Boolean removeItemFromInvoice(Integer totalOrderId) {
+		Boolean isOrderInvoiced = false;
+		try {
+			TotalOrders totalOrders = (TotalOrders) commonRepository.findById(totalOrderId, TotalOrders.class);
+			totalOrders.setIsItemInvoiced(Boolean.TRUE);
+			commonRepository.update(totalOrders);
+			CustomerDeliveryAddress customerDeliveryAddress = customerRepository.findAddressByTotalOrderId(totalOrderId);
+			customerDeliveryAddress.setIsDeleted(Boolean.TRUE);
+			commonRepository.update(customerDeliveryAddress);
+			isOrderInvoiced = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at removeItemFromInvoice() in TotalOrdersService:" + e.getMessage(), e);
+		}
+		return isOrderInvoiced;
+	}
+
+	public List<TotalOrdersJson> getDeliveredTotalOrders() {
+		List<TotalOrdersJson> totalOrdersJsonList = new ArrayList<TotalOrdersJson>();
+		try {
+			List<TotalOrders> list = totalOrdersRepository.getDeliveredTotalOrders();
+			if (list != null && list.size() > 0) {
+				for (TotalOrders totalOrders : list) {
+					totalOrdersJsonList.add(TransformDomainToJson.getTotalOrdersJson(totalOrders));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getDeliveredTotalOrders() in TotalOrdersService:" + e.getMessage(), e);
+		}
+		return totalOrdersJsonList;
+	}
 }

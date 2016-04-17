@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -17,7 +17,7 @@
 		<table cellpadding="0" cellspacing="0" align="center" border="0"
 			width="100%">
 			<f:loadBundle var="categoryUnitType"
-				basename="com.intuiture.storetodoorgrocer.util.quantityType"></f:loadBundle>
+				basename="com.intuiture.qm.util.quantityType"></f:loadBundle>
 			<ui:include src="header.xhtml"></ui:include>
 			<tr>
 
@@ -65,7 +65,7 @@
 										action="#{CustomerBean.searchGoAction}" icon="ui-icon-check"></p:commandButton></td>
 								<td align="center"><h:commandButton value="Cancel"
 										styleClass="refine_btn cmdBtnNew"
-										action="#{AddItemBean.cancleAction}"></h:commandButton></td>
+										action="#{HomeBean.cancel}"></h:commandButton></td>
 							</tr>
 						</ui:repeat>
 					</table>
@@ -124,22 +124,19 @@
 						style="width:100%">
 
 						<p:column headerText="Customer Name " styleClass="column15">
-							<h:outputLabel value="#{customer.fullName}"></h:outputLabel>
+							<h:outputLabel value="#{customer.firstName}"></h:outputLabel>
 						</p:column>
 						<p:column headerText="Address" styleClass="column15">
-							<h:outputLabel value="#{customer.deliveryAddress}"></h:outputLabel>
+							<h:outputLabel value="#{customer.address}"></h:outputLabel>
 						</p:column>
 						<p:column headerText="Email" styleClass="column15">
-							<h:outputLabel value="#{customer.email}"></h:outputLabel>
+							<h:outputLabel value="#{customer.emailId}"></h:outputLabel>
 						</p:column>
 						<p:column headerText="Phone Number" styleClass="column15">
-							<h:outputLabel value="#{customer.phoneNo}"></h:outputLabel>
-						</p:column>
-						<p:column headerText="Yearly Purchases" styleClass="column15">
-							<h:outputLabel value="#{customer.yearlyPurchase}"></h:outputLabel>
+							<h:outputLabel value="#{customer.phoneNumber}"></h:outputLabel>
 						</p:column>
 						<p:column headerText="Registered On" styleClass="column15">
-							<h:outputLabel value="#{customer.createdOn}">
+							<h:outputLabel value="#{customer.strCreatedOn}">
 								<f:convertDateTime pattern="dd-MMM-yyyy"></f:convertDateTime>
 							</h:outputLabel>
 						</p:column>
@@ -149,4 +146,3 @@
 	</h:form>
 </h:body>
 </html>
- -->

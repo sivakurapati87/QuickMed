@@ -1,5 +1,8 @@
 package com.intuiture.qm.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,7 @@ import com.intuiture.qm.dao.CustomerRepository;
 import com.intuiture.qm.entity.Customer;
 import com.intuiture.qm.entity.CustomerDeliveryAddress;
 import com.intuiture.qm.json.CustomerJson;
+import com.intuiture.qm.json.GridInfoJson;
 import com.intuiture.qm.util.MethodUtil;
 import com.intuiture.qm.util.TransformDomainToJson;
 import com.intuiture.qm.util.TransformJsonToDomain;
@@ -59,6 +63,7 @@ public class CustomerService {
 				customer.setPincode(customerJson.getCustomerDeliveryAddressJson().getPincode());
 
 				CustomerDeliveryAddress customerDeliveryAddress = new CustomerDeliveryAddress();
+				customerDeliveryAddress.setPhoneNumber(customerJson.getPhoneNumber());
 				customerDeliveryAddress.setAddress(customerJson.getCustomerDeliveryAddressJson().getAddress());
 				customerDeliveryAddress.setCity(customerJson.getCustomerDeliveryAddressJson().getCity());
 				customerDeliveryAddress.setIsDeleted(Boolean.FALSE);
@@ -88,4 +93,38 @@ public class CustomerService {
 		}
 		return customerJson;
 	}
+
+	public List<CustomerJson> getAllCustomer(GridInfoJson gridInfoJson) {
+
+		List<CustomerJson> customerJsonList = null;
+		try {
+			List<Customer> customerList = customerRepository.getAllCustomer(gridInfoJson);
+			if (customerList != null && customerList.size() > 0) {
+				customerJsonList = new ArrayList<CustomerJson>();
+				for (Customer customer : customerList) {
+					CustomerJson customerJson = TransformDomainToJson.getCustomerJson(customer);
+					customerJsonList.add(customerJson);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getAllCustomer() in CustomerService:" + e.getMessage(), e);
+		}
+		return customerJsonList;
+	}
+
+	public Long getNoOfItemsList(GridInfoJson gridInfoJson) {
+		Long noOfRecords = null;
+		try {
+
+			noOfRecords = customerRepository.getNoOfCustomers(gridInfoJson);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("Error at getNoOfItemsList() in CustomerService:" + e.getMessage(), e);
+		}
+		return noOfRecords;
+	}
+
 }

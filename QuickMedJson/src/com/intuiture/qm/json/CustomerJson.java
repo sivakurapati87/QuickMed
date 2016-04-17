@@ -18,6 +18,7 @@ public class CustomerJson {
 	private String address;
 	private String city;
 	private String state;
+	private String strCreatedOn;
 	private CustomerDeliveryAddressJson customerDeliveryAddressJson;
 
 	public Long getPincode() {
@@ -146,5 +147,13 @@ public class CustomerJson {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getStrCreatedOn() {
+		return strCreatedOn;
+	}
+
+	public void setStrCreatedOn(String strCreatedOn) {
+		this.strCreatedOn = strCreatedOn;
 	}
 }

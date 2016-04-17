@@ -54,10 +54,14 @@ public class Constants {
 	public static class AdminLoginController {
 		public static final String LOGINACTION = SERVICEURL + "/AdminLoginController/loginAction";
 		public static final String GETPWDACTION = SERVICEURL + "/AdminLoginController/getPasswordAction";
+		public static final String CHECKUSERNAMEEXISTS = SERVICEURL + "/AdminLoginController/checkUserNameExists";
+		public static final String REGISTRACTION = SERVICEURL + "/AdminLoginController/registrationAction";
+		public static final String GETALLEMPLOYEES = SERVICEURL + "/AdminLoginController/getAllAdmins";
+		public static final String DELETEEMPLOYEE = SERVICEURL + "/AdminLoginController/deleteAdmin";
 	}
 
 	public static class Employee {
-		public static final String SUBMITREGISTRATIONPAGEACTION = SERVICEURL + "/EmployeeController/submitRegistrationPageAction";
+		public static final String SUBMITREGISTRATIONPAGEACTION = SERVICEURL + "/EmployeeController/registrationAction";
 		public static final String GETALLEMPLOYEES = SERVICEURL + "/EmployeeController/getAllEmployees";
 		public static final String DELETEEMPLOYEE = SERVICEURL + "/EmployeeController/deleteEmployee";
 	}
@@ -114,7 +118,7 @@ public class Constants {
 
 	public static class TotalOrdersController {
 		public static final String GETTOTALORDERS = SERVICEURL + "/TotalOrdersController/getTotalOrders";
-		public static final String SAVETOTALORDERS = SERVICEURL + "/TotalOrdersController/saveTotalOrders";
+		public static final String SENDTHEORDERFORDELIVERY = SERVICEURL + "/TotalOrdersController/sendTheOrderForDelivery";
 		public static final String REMOVETOTALORDER = SERVICEURL + "/TotalOrdersController/removeTotalOrder";
 		public static final String GETDELIVERED_TOTALORDERS = SERVICEURL + "/TotalOrdersController/getDeliveredTotalOrders";
 		public static final String REMOVEITEMFROMINVOICE = SERVICEURL + "/TotalOrdersController/removeItemFromInvoice";

@@ -18,29 +18,28 @@ public class HomeManagedBean extends HomeBean {
 	// private SubCategoryManagedBean subCategoryManagedBean;
 	// @ManagedProperty(value = "#{AddItemBean}")
 	// private AddItemManagedBean itemInfoManagedBean;
-	// @ManagedProperty(value = "#{AddEmployeeBean}")
-	// private AddEmployeeManagedBean addEmployeeManagedBean;
+	@ManagedProperty(value = "#{AddEmployeeBean}")
+	private AddEmployeeManagedBean addEmployeeManagedBean;
 	// @ManagedProperty(value = "#{PromotionalSmsBean}")
 	// private PromotionalSmsManagedBean promotionalSmsManagedBean;
-	// @ManagedProperty(value = "#{CustomerBean}")
-	// private CustomerManagedBean customerManagedBean;
+	 @ManagedProperty(value = "#{CustomerBean}")
+	 private CustomerManagedBean customerManagedBean;
 	// @ManagedProperty(value = "#{GenerateCouponBean}")
 	// private GenerateCouponManagedBean generateCouponManagedBean;
 	@ManagedProperty(value = "#{OrdersBean}")
 	private OrdersManagedBean ordersManagedBean;
 
-	// @ManagedProperty(value = "#{InvoiceBean}")
-	// private InvoiceManagedBean invoiceManagedBean;
-	//
-	// public InvoiceManagedBean getInvoiceManagedBean() {
-	// return invoiceManagedBean;
-	// }
-	//
-	// public void setInvoiceManagedBean(InvoiceManagedBean invoiceManagedBean)
-	// {
-	// this.invoiceManagedBean = invoiceManagedBean;
-	// }
-	//
+	@ManagedProperty(value = "#{InvoiceBean}")
+	private InvoiceManagedBean invoiceManagedBean;
+
+	public InvoiceManagedBean getInvoiceManagedBean() {
+		return invoiceManagedBean;
+	}
+
+	public void setInvoiceManagedBean(InvoiceManagedBean invoiceManagedBean) {
+		this.invoiceManagedBean = invoiceManagedBean;
+	}
+
 	public OrdersManagedBean getOrdersManagedBean() {
 		return ordersManagedBean;
 	}
@@ -59,14 +58,13 @@ public class HomeManagedBean extends HomeBean {
 	// this.generateCouponManagedBean = generateCouponManagedBean;
 	// }
 	//
-	// public CustomerManagedBean getCustomerManagedBean() {
-	// return customerManagedBean;
-	// }
-	//
-	// public void setCustomerManagedBean(CustomerManagedBean
-	// customerManagedBean) {
-	// this.customerManagedBean = customerManagedBean;
-	// }
+	public CustomerManagedBean getCustomerManagedBean() {
+		return customerManagedBean;
+	}
+
+	public void setCustomerManagedBean(CustomerManagedBean customerManagedBean) {
+		this.customerManagedBean = customerManagedBean;
+	}
 	//
 	// public PromotionalSmsManagedBean getPromotionalSmsManagedBean() {
 	// return promotionalSmsManagedBean;
@@ -77,14 +75,13 @@ public class HomeManagedBean extends HomeBean {
 	// this.promotionalSmsManagedBean = promotionalSmsManagedBean;
 	// }
 	//
-	// public AddEmployeeManagedBean getAddEmployeeManagedBean() {
-	// return addEmployeeManagedBean;
-	// }
-	//
-	// public void setAddEmployeeManagedBean(AddEmployeeManagedBean
-	// addEmployeeManagedBean) {
-	// this.addEmployeeManagedBean = addEmployeeManagedBean;
-	// }
+	public AddEmployeeManagedBean getAddEmployeeManagedBean() {
+		return addEmployeeManagedBean;
+	}
+
+	public void setAddEmployeeManagedBean(AddEmployeeManagedBean addEmployeeManagedBean) {
+		this.addEmployeeManagedBean = addEmployeeManagedBean;
+	}
 	//
 	// public CategoryManagedBean getCategoryManagedBean() {
 	// return categoryManagedBean;
@@ -195,7 +192,7 @@ public class HomeManagedBean extends HomeBean {
 	 */
 	public String addEmployeeAction() {
 		try {
-			// addEmployeeManagedBean.init();
+			 addEmployeeManagedBean.init();
 		} catch (Exception e) {
 			LOG.error("error at addEmployeeAction() in HomeManagedBean" + e.getMessage());
 		}
@@ -218,12 +215,12 @@ public class HomeManagedBean extends HomeBean {
 	}
 
 	public String customerList() {
-		// customerManagedBean.init();
+		 customerManagedBean.init();
 		return "/views/customerList";
 	}
 
 	public String invoiceAction() {
-		// invoiceManagedBean.init();
+		invoiceManagedBean.init();
 		return "/views/invoice";
 	}
 

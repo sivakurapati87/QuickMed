@@ -18,6 +18,7 @@ public class Admin {
 	private String password;
 	private Date createdOn;
 	private Date updatedOn;
+	private Boolean isDeleted;
 
 	public Integer getAdminId() {
 		return adminId;
@@ -57,6 +58,14 @@ public class Admin {
 
 	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 }

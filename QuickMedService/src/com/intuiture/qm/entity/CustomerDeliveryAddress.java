@@ -22,6 +22,7 @@ public class CustomerDeliveryAddress {
 	@OneToOne
 	@JoinColumn(name = "totalOrderId", insertable = false, updatable = false)
 	private TotalOrders totalOrders;
+	private Long phoneNumber;
 	private Long pincode;
 	private String address;
 	private String city;
@@ -89,6 +90,14 @@ public class CustomerDeliveryAddress {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }

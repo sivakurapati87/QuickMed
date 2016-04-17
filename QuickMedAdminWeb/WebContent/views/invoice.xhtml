@@ -1,4 +1,5 @@
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -13,8 +14,6 @@
 <h:body style="margin:0; padding:0;" styleClass="bg">
 	<h:outputScript library="js" name="script.js"></h:outputScript>
 	<h:outputStylesheet library="css" name="storetodoorgrocer.css" />
-	<f:loadBundle var="constant"
-		basename="com.intuiture.storetodoorgrocer.util.quantityType"></f:loadBundle>
 	<h:form id="formId">
 		<table cellpadding="0" cellspacing="0" align="center" border="0"
 			width="100%">
@@ -34,11 +33,11 @@
 							<td><p:commandButton value="Print" onclick="rc();"
 									type="button">
 									<p:printer target=":formId:invoicePrintId"></p:printer>
-								</p:commandButton>
-								<p:remoteCommand name="rc"  update=":formId:comboBoxId" actionListener="#{InvoiceBean.removeItemFromInvoiceCombo}" />
-								</td>
+								</p:commandButton> <p:remoteCommand name="rc" update=":formId:comboBoxId"
+									actionListener="#{InvoiceBean.removeItemFromInvoiceCombo}" />
+							</td>
 							<td><p:commandButton value="Cancel"
-									action="#{AddItemBean.cancleAction}"></p:commandButton></td>
+									action="#{HomeBean.cancel}"></p:commandButton></td>
 						</tr>
 					</table>
 				</td>
@@ -86,12 +85,12 @@
 													<tr style="height: 5px"></tr>
 													<tr>
 														<td><h:outputLabel styleClass="labelfont16"
-																value="#{InvoiceBean.totalOrdersJson.customerJson.fullName}"></h:outputLabel>
+																value="#{InvoiceBean.totalOrdersJson.customerJson.firstName}"></h:outputLabel>
 														</td>
 													</tr>
 													<tr style="height: 5px"></tr>
 													<tr>
-														<td class="labelfont16" >
+														<td class="labelfont16">
 															<div style="width: 160px;">
 																<h:outputLabel
 																	value="#{InvoiceBean.totalOrdersJson.deliveryAddress}"></h:outputLabel>
@@ -107,7 +106,7 @@
 													<tr>
 														<td><h:outputLabel value="Email: "
 																styleClass="labelfont16"></h:outputLabel> <h:outputLabel
-																value=" #{InvoiceBean.totalOrdersJson.customerJson.email}"
+																value=" #{InvoiceBean.totalOrdersJson.customerJson.emailId}"
 																styleClass="labelfont16"></h:outputLabel></td>
 													</tr>
 													<tr style="height: 10px"></tr>
@@ -163,35 +162,6 @@
 												</table>
 											</td>
 											<td valign="top">
-												<table width="100%" cellpadding="0" cellspacing="0"
-													border="0">
-													<tr>
-														<td align="center"><h:graphicImage library="images"
-																name="store2door1.png"></h:graphicImage></td>
-													</tr>
-													<tr style="height: 10px"></tr>
-													<tr>
-														<td align="center"><h:outputLabel
-																value="
-															                                    B 1/1, TIE, Phase-2,Balanagar &lt;br/&gt;
-															                                    Hyderabad-500037 &lt;br/&gt;
-															                                    Telangana.&lt;br/&gt;
-															                                    phone:040-40023222"
-																escape="false" styleClass="lablefonts"></h:outputLabel></td>
-													</tr>
-													<tr style="height: 10px"></tr>
-													<tr>
-														<td align="center"><h:outputLabel
-																value="
-															                                    Flat No: 301,WhisperMedows &lt;br/&gt;
-															                                    Prabhu Nagar,Poranki &lt;br/&gt;
-															                                    Vijayawada- 521137 &lt;br/&gt;
-															                                    AndhraPradesh &lt;br/&gt;
-															                                    cell:9700941698"
-																escape="false" styleClass="lablefonts"></h:outputLabel></td>
-
-													</tr>
-												</table>
 											</td>
 										</tr>
 									</table></td>
@@ -202,7 +172,7 @@
 										style="width:90%" value="#{InvoiceBean.orderItemsList}">
 										<p:column headerText="Item Name"
 											styleClass="labelfont12 column24">
-											<p:outputLabel value="#{json.addItemJson.itemName}"></p:outputLabel>
+											<p:outputLabel value="#{json.itemJson.itemName}"></p:outputLabel>
 										</p:column>
 										<p:column styleClass="column15 labelfont12 align_right"
 											headerText="Unit Cost">
@@ -216,10 +186,6 @@
 											styleClass="labelfont12 column10 align_right">
 											<p:outputLabel value="#{json.subTotal}"
 												styleClass="lblFont_18"></p:outputLabel>
-										</p:column>
-										<p:column headerText="Savings"
-											styleClass="labelfont12 column10 align_right">
-											<p:outputLabel value="#{json.savings}"></p:outputLabel>
 										</p:column>
 									</p:dataTable></td>
 							</tr>
@@ -237,13 +203,9 @@
 												<table width="100%" cellpadding="0" cellspacing="0"
 													border="0">
 													<tr>
-														<td><h:outputLabel
+														<td colspan="3"><h:outputLabel
 																value="#{InvoiceBean.totalOrdersJson.subTotal}"
 																styleClass="labelfont_16"></h:outputLabel></td>
-														<td width="30px"></td>
-														<td><h:outputLabel
-																value="#{InvoiceBean.totalOrdersJson.subTotal}"
-																styleClass="labelfont_Vio_16"></h:outputLabel></td>
 													</tr>
 												</table>
 											</td>
@@ -288,4 +250,3 @@
 	</h:form>
 </h:body>
 </html>
- -->

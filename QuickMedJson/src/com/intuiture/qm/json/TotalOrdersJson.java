@@ -12,7 +12,7 @@ public class TotalOrdersJson {
 	private Integer totalOrderId;
 	private String totalOrderGenId;
 	private Integer customerId;
-	// private Double totalPurchase;
+	private Double totalPurchase;
 	private Integer couponCodeId;
 	private Double subTotal;
 	private Double totalAmount;
@@ -56,13 +56,13 @@ public class TotalOrdersJson {
 		this.customerId = customerId;
 	}
 
-	// public Double getTotalPurchase() {
-	// return totalPurchase;
-	// }
-	//
-	// public void setTotalPurchase(Double totalPurchase) {
-	// this.totalPurchase = totalPurchase;
-	// }
+	 public Double getTotalPurchase() {
+	 return totalPurchase;
+	 }
+	
+	 public void setTotalPurchase(Double totalPurchase) {
+	 this.totalPurchase = totalPurchase;
+	 }
 
 	public Integer getCouponCodeId() {
 		return couponCodeId;

@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 
 import com.intuiture.qm.bean.OrdersBean;
+import com.intuiture.qm.json.AddToCartJson;
 import com.intuiture.qm.json.GridInfoJson;
 import com.intuiture.qm.json.SearchComboJson;
 import com.intuiture.qm.json.SearchJson;
@@ -161,23 +162,26 @@ public class OrdersManagedBean extends OrdersBean {
 	// public void onChangeQntyComboChange(Integer keyValue) {
 	public void onChangeQntyComboChange() {
 		try {
-//			Double subTotal = 0d;
-//			for (AddToCartJson json : getTotalOrdersJson().getOrderList()) {
-//				json.setSubTotal(json.getPrice() * json.getQuantity());
-//				subTotal += json.getSubTotal();
-//			}
-//			for (TotalOrdersJson json : getTotalOrdersList()) {
-//				if (json.getTotalOrderId().equals(getTotalOrdersJson().getTotalOrderId())) {
-//					json.setSubTotal(subTotal);
-//					if (subTotal < Constants.AMOUNTEXCEEDSLIMIT) {
-//						json.setDeliveryCharges(Constants.DELIVERYCHARGES);
-//					} else {
-//						json.setDeliveryCharges(0d);
-//					}
-//					json.setTotalPurchase(json.getSubTotal() + json.getDeliveryCharges());
-//
-//				}
-//			}
+			// Double subTotal = 0d;
+			// for (AddToCartJson json : getTotalOrdersJson().getOrderList()) {
+			// json.setSubTotal(json.getPrice() * json.getQuantity());
+			// subTotal += json.getSubTotal();
+			// }
+			// for (TotalOrdersJson json : getTotalOrdersList()) {
+			// if
+			// (json.getTotalOrderId().equals(getTotalOrdersJson().getTotalOrderId()))
+			// {
+			// json.setSubTotal(subTotal);
+			// if (subTotal < Constants.AMOUNTEXCEEDSLIMIT) {
+			// json.setDeliveryCharges(Constants.DELIVERYCHARGES);
+			// } else {
+			// json.setDeliveryCharges(0d);
+			// }
+			// json.setTotalPurchase(json.getSubTotal() +
+			// json.getDeliveryCharges());
+			//
+			// }
+			// }
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,41 +193,42 @@ public class OrdersManagedBean extends OrdersBean {
 	}
 
 	public String deleteOrder() {
-//		String key = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("key");
-//		Integer cartId = null;
-//		if (key != null) {
-//			cartId = Integer.parseInt(key);
-//			CommonUtil.removeItemFromCart(Constants.AddToCartController.REMOVECART, cartId);
-//			getTotalOrdersJson().setOrdersList(CommonUtil.getAllOrderedItemsCustomerId(getTotalOrdersJson().getCustomerId(), getTotalOrdersJson().getTotalOrderId()));
-//			if (getTotalOrdersJson().getOrdersList() == null) {
-//				CommonUtil.removeTotalOrder(Constants.TotalOrdersController.REMOVETOTALORDER, getTotalOrdersJson().getTotalOrderId());
-//				init();
-//			} else {
-//				onChangeQntyComboChange();
-//			}
-//		}
+		String key = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("key");
+		Integer cartId = null;
+		if (key != null) {
+			cartId = Integer.parseInt(key);
+			CommonUtil.removeItemFromCart(Constants.AddToCartController.REMOVECART, cartId);
+			getTotalOrdersJson().setOrderList(CommonUtil.getAllOrderedItemsCustomerId(getTotalOrdersJson().getCustomerId(), getTotalOrdersJson().getTotalOrderId()));
+			if (getTotalOrdersJson().getOrderList() == null) {
+				CommonUtil.removeTotalOrder(Constants.TotalOrdersController.REMOVETOTALORDER, getTotalOrdersJson().getTotalOrderId());
+				init();
+			} else {
+				onChangeQntyComboChange();
+			}
+		}
 		return "";
 	}
 
 	public String updateOrders() {
-//		if (getTotalOrdersList() != null && getTotalOrdersList().size() > 0) {
-//			for (TotalOrdersJson totalOrdersJson : getTotalOrdersList()) {
-//				if (totalOrdersJson.getIsTotalOrderSelected()) {
-//					totalOrdersJson.setIsDeleted(Boolean.TRUE);
-//					totalOrdersJson.setIsDelivered(Boolean.TRUE);
-//					CommonUtil.saveTotalOrders(totalOrdersJson);
-//					// List<AddToCartJson> orderList =
-//					// CommonUtil.getAllOrderedItemsCustomerId(totalOrdersJson.getCustomerId(),
-//					// totalOrdersJson.getTotalOrderId());
-//					if (totalOrdersJson.getOrdersList() != null && totalOrdersJson.getOrdersList().size() > 0) {
-//						for (AddToCartJson item : totalOrdersJson.getOrdersList()) {
-//							CommonUtil.makeAnItemToDelivered(item);
-//						}
-//					}
-//				}
-//			}
-//		}
-//		init();
+		if (getTotalOrdersList() != null && getTotalOrdersList().size() > 0) {
+			for (TotalOrdersJson totalOrdersJson : getTotalOrdersList()) {
+				if (totalOrdersJson.getIsTotalOrderSelected()) {
+					totalOrdersJson.setIsDeleted(Boolean.TRUE);
+					totalOrdersJson.setIsDelivered(Boolean.TRUE);
+					CommonUtil.sendTheOrderForDelivery(totalOrdersJson);
+					// List<AddToCartJson> orderList =
+					//
+					// CommonUtil.getAllOrderedItemsCustomerId(totalOrdersJson.getCustomerId(),
+					// totalOrdersJson.getTotalOrderId());
+					if (totalOrdersJson.getOrderList() != null && totalOrdersJson.getOrderList().size() > 0) {
+						for (AddToCartJson item : totalOrdersJson.getOrderList()) {
+							CommonUtil.makeAnItemToDelivered(item);
+						}
+					}
+				}
+			}
+		}
+		init();
 		return "";
 	}
 }

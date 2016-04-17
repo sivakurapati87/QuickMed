@@ -103,6 +103,7 @@ public class TransformDomainToJson {
 			customerJson.setPhoneNumber(customer.getPhoneNumber());
 			customerJson.setUserName(customer.getUserName());
 			customerJson.setGender(customer.getGender());
+			customerJson.setStrCreatedOn(MethodUtil.convertDateToString(customer.getCreatedOn()));
 			customerJson.setStrDateOfBirth(MethodUtil.convertDateToString(customer.getDateOfBirth()));
 			CustomerDeliveryAddressJson deliveryAddressJson = new CustomerDeliveryAddressJson();
 			deliveryAddressJson.setCity(customer.getCity());
@@ -121,7 +122,7 @@ public class TransformDomainToJson {
 		AdminJson adminJson = new AdminJson();
 		try {
 			adminJson.setAdminId(admin.getAdminId());
-			adminJson.setPassword(admin.getPassword());
+//			adminJson.setPassword(admin.getPassword());
 			adminJson.setUserName(admin.getUserName());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,7 +160,7 @@ public class TransformDomainToJson {
 			totalOrdersJson.setIsDeleted(totalOrders.getIsDeleted());
 			// totalOrdersJson.setOrderDate(totalOrders.getOrderDate());
 			totalOrdersJson.setTypeOfOrder(totalOrders.getTypeOfOrder());
-			totalOrdersJson.setSubTotal(totalOrders.getSubTotal());
+			totalOrdersJson.setSubTotal(MethodUtil.round(totalOrders.getSubTotal(), 2));
 			totalOrdersJson.setTotalOrderId(totalOrders.getTotalOrderId());
 			totalOrdersJson.setTotalAmount(totalOrders.getTotalAmount());
 			totalOrdersJson.setDiscountAmount(totalOrders.getDiscountAmount());
@@ -168,6 +169,8 @@ public class TransformDomainToJson {
 			totalOrdersJson.setImageName(Constants.PLUS);
 			totalOrdersJson.setIsDelivered(totalOrders.getIsDelivered());
 			totalOrdersJson.setStrOrderDate(MethodUtil.convertDateToString(totalOrders.getOrderDate()));
+			totalOrdersJson.setTotalPurchase(MethodUtil.round(totalOrders.getSubTotal()
+					+ (totalOrders.getDeliveryCharges() != null ? totalOrders.getDeliveryCharges() : 0d), 2));
 			// totalOrdersJson.setIsTotalOrderSelected(Boolean.FALSE);
 			totalOrdersJson.setIsItemInvoiced(totalOrders.getIsItemInvoiced());
 			// totalOrdersJson.setLocationId(totalOrders.getLocationId());

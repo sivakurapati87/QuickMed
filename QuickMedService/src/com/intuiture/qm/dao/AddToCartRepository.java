@@ -48,17 +48,22 @@ public class AddToCartRepository extends BaseRepository {
 		return addToCartList;
 	}
 
-	//
-	// public List<AddToCart> getAllDeliverableOrderItems(Integer totalOrderId)
-	// {
-	// List<AddToCart> addToCartList = null;
-	// TypedQuery<AddToCart> tpQuery =
-	// getEntityManager().createNamedQuery(GETALLORDEREDITEMSBY_TOTALORDERID,
-	// AddToCart.class);
-	// tpQuery.setParameter(1, totalOrderId);
-	// addToCartList = tpQuery.getResultList();
-	// return addToCartList;
-	// }
+	@SuppressWarnings("unchecked")
+	public List<AddToCart> getAllDeliverableOrderItems(Integer totalOrderId) {
+		List<AddToCart> addToCartList = null;
+		try {
+			Criteria criteria = getSession().createCriteria(AddToCart.class);
+			criteria.add(Restrictions.and(Restrictions.eq("isItemRemovedFromCart", Boolean.TRUE), Restrictions.eq("isItemOrdered", Boolean.TRUE),
+					Restrictions.eq("totalOrderId", totalOrderId), Restrictions.eq("isItemDelivered", Boolean.TRUE)));
+			addToCartList = criteria.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+		}
+
+		return addToCartList;
+	}
+
 	//
 	// public List<AddToCart> getAllOrderedItemsCustomerId(Integer customerId) {
 	// List<AddToCart> addToCartList = null;

@@ -2,34 +2,23 @@ package com.intuiture.qm.util;
 
 import org.apache.log4j.Logger;
 
+import com.intuiture.qm.json.AdminJson;
+import com.intuiture.qm.managedbean.AddEmployeeManagedBean;
+
 public class TransformBeanToJson {
 	private static Logger LOG = Logger.getLogger(TransformBeanToJson.class);
 
-	// public static UserJson getUserJsonFromRegistrationBean(UserJson userJson,
-	// AddEmployeeManagedBean addEmployeeManagedBean) {
-	// try {
-	// if (addEmployeeManagedBean != null) {
-	// if (userJson.getUserId() != null) {
-	// userJson.setUpdatedOn(new Date());
-	// } else {
-	// userJson.setCreatedOn(new Date());
-	// }
-	// userJson.setIsAdmin(addEmployeeManagedBean.getSelectedEmpType().equals(Constants.ADMINID)
-	// ? Boolean.TRUE : Boolean.FALSE);
-	// userJson.setIsDeleted(Boolean.FALSE);
-	// userJson.setEmail(addEmployeeManagedBean.getEmail());
-	// userJson.setEmpTypeId(addEmployeeManagedBean.getSelectedEmpType());
-	// userJson.setFullName(addEmployeeManagedBean.getFullName());
-	// userJson.setMobileNumber(Long.parseLong(addEmployeeManagedBean.getMobileNo()));
-	// userJson.setPassword(CommonUtil.passwordEncryption(addEmployeeManagedBean.getPassword()));
-	// userJson.setUserName(CommonUtil.getUserNameFromEmail(addEmployeeManagedBean.getEmail()));
-	// }
-	// } catch (Exception e) {
-	// LOG.error("error at getUserJsonFromRegistrationBean() in TransformBeanToJson"
-	// + e.getMessage());
-	// }
-	// return userJson;
-	// }
+	public static AdminJson getUserJsonFromRegistrationBean(AdminJson adminJson, AddEmployeeManagedBean addEmployeeManagedBean) {
+		try {
+			if (addEmployeeManagedBean != null) {
+				adminJson.setPassword(addEmployeeManagedBean.getPassword());
+				adminJson.setUserName(addEmployeeManagedBean.getUserName());
+			}
+		} catch (Exception e) {
+			LOG.error("error at getUserJsonFromRegistrationBean() in TransformBeanToJson" + e.getMessage());
+		}
+		return adminJson;
+	}
 
 	//
 	// public static CouponJson getCouponJsonFromBean(GenerateCouponManagedBean
