@@ -45,6 +45,7 @@
 <script src="resources/js/controller/ShoppingCartController.js"></script>
 <script src="resources/js/controller/CheckoutAddressController.js"></script>
 <script src="resources/js/controller/CheckoutController.js"></script>
+<script src="resources/js/controller/FooterController.js"></script>
 
 
 <script src="resources/js/service/constants.js"></script>

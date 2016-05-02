@@ -4,7 +4,7 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
 	$rootScope.rsPageName = "checkout";
 	$location.hash('checkOutDivId');
 	
-	//onchange quantity combo box in the checkout table
+	/*//onchange quantity combo box in the checkout table
 	$scope.onChangeQuantityCombo = function(cartItem){
 		angular.forEach($rootScope.rsAddedCartItemList, function(obj, key) {
 			if(obj.itemId == cartItem.itemId)
@@ -24,7 +24,7 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
 				});
 			}
 		});
-	};
+	};*/
 	
 	//find the sum of all sub costs
     $scope.findTotalSubCost = function(){
@@ -38,7 +38,7 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
   	  }
     };
     
-  //find the sum of all discounts
+ //find the sum of all discounts
     $scope.findTotalDiscount = function(){
   	  if($rootScope.rsAddedCartItemList){
   		  $scope.totalDiscount = 0;
@@ -50,7 +50,7 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
   	  }
     };
     
-    //To get the gender combo
+    /*  //To get the gender combo
     $scope.getGenderCombo = function(){
 		$scope.genderList = [{}];
 		$scope.genderList.splice(0,1);
@@ -61,7 +61,7 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
 			obj.value = genders[i];
 			$scope.genderList.push(obj);
 		}
-    };
+    };*/
     
     //To perfomr cash on delivery
     $scope.cashOnDeliveryAction = function(){
@@ -78,7 +78,7 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
         });
     };
     
-    $scope.saveCustomerDeliverAddress = function(){
+ $scope.saveCustomerDeliverAddress = function(){
     	$http.post(constants.localhost_port+"/"+constants.service_context+'/'+constants.CustomerController+'/placeCustomerDeliverAddress',$rootScope.rsCustomerJson).success(function(data) {
 //			$rootScope.rsAddedCartItemList = null;
     		if(data){
@@ -87,13 +87,24 @@ App.controller('CheckoutController', ['$scope','$http','$rootScope','$state',"$l
 		}).error(function() {
       	  console.error('Could not save Customer Deliver Address');
         });
-    }
+    } 
     
     //find the total order amount
     $scope.findTotalOrderAmount = function(){
     	 return $scope.findTotalSubCost()+49;
     }
-    
+   
     //init
-    $scope.getGenderCombo();
+   // $scope.getGenderCombo();
+	
+//	  $scope.saveCheckOutItems = function(){
+//	    	$http.post(constants.localhost_port+"/"+constants.web_context+'/'+constants.CheckoutItemController+'/saveCheckOutItems',$rootScope.rsAddedCartItemList).success(function(data) {
+//			}).error(function() {
+//	      	  console.error('Could not save Customer Checkout Items');
+//	        });
+//	    }
+//	  
+	  //To save checkout items
+//	$scope.saveCheckOutItems();
+	
 }]);

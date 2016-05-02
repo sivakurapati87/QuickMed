@@ -2,7 +2,8 @@ package com.intuiture.qm.util;
 
 public class Ex {
 	public static void main(String[] args) {
-		User user = new User.UserBuilder("Siva").setAge(28).setIsMale(true).getUserInstance();
+		User user = new User.UserBuilder("Siva").setAge(28).setAge(30).setIsMale(true).getUserInstance();
+
 		System.out.println(user.getName());
 	}
 

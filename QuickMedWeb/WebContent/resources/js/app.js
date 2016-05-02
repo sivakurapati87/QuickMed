@@ -106,7 +106,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "HomeController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -122,7 +123,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "CategoryController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -138,7 +140,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "ItemController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -154,7 +157,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "SearchItemController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -170,7 +174,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "ViewAllSubCategoryOrManufacturersController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -186,7 +191,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "AccountController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -202,7 +208,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "ShoppingCartController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -218,7 +225,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "CheckoutAddressController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})
@@ -234,7 +242,8 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	        		controller : "CheckoutController"
 	            },
 	            'footer': {
-	                templateUrl: 'footer'
+	                templateUrl: 'footer',
+	                controller : 'FooterController'
 	            }
 	        }
 	})

@@ -48,4 +48,9 @@ public class ItemController {
 	public Integer getNoOfRequiredsearchProducts(@PathVariable("productName") String productName) {
 		return itemService.getNoOfRequiredsearchProducts(productName);
 	}
+	
+	@RequestMapping(value = "/getAllSimilarItems/{chemicalIngradient}", method = RequestMethod.GET)
+	public List<ItemJson> getAllSimilarItems(@PathVariable("chemicalIngradient")String chemicalIngradient) {
+		return itemService.getAllSimilarItems(chemicalIngradient);
+	}
 }

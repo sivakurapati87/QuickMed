@@ -17,6 +17,7 @@ public class ItemJson {
 	private List<ComboJson> comboJsonList;
 	private Integer selectedComboJson;
 	private Boolean isPrescription;
+	private String chemicalIngradient;
 
 	public String getCategoryName() {
 		return categoryName;
@@ -128,6 +129,14 @@ public class ItemJson {
 
 	public void setSearchItemName(String searchItemName) {
 		this.searchItemName = searchItemName;
+	}
+
+	public String getChemicalIngradient() {
+		return chemicalIngradient;
+	}
+
+	public void setChemicalIngradient(String chemicalIngradient) {
+		this.chemicalIngradient = chemicalIngradient;
 	}
 
 }

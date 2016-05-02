@@ -16,11 +16,27 @@ App.controller('ItemController', ['$scope','$http','$rootScope','$state','$locat
 		});
 	};
 	
+	$scope.getSimilarPrescriptions = function(){
+		$http.get(constants.localhost_port+"/"+constants.service_context+'/'+constants.ItemController+'/getAllSimilarItems/'+$rootScope.itemInfoObj.chemicalIngradient).success(function(data) {
+			$scope.similarPrescriptionsList = data;
+		}).error(function() {
+      	  console.error('Could not get All Manufacturer List');
+        });
+	};
+	
+	
+	 //Display item info
+    $scope.displayItemInfo = function(item){
+		$rootScope.itemInfoObj = item;
+		$state.go('itemInfo', {}, {reload : true});
+	};
+	
 	$scope.init = function(){
 		if($rootScope.itemInfoObj){
 		$rootScope.itemInfoObj.selectedComboJson =  $rootScope.itemInfoObj.comboJsonList[0].value;
 		$scope.actualPrice = $rootScope.itemInfoObj.comboJsonList[0].actualPrice;
 		$scope.offerPrice = $rootScope.itemInfoObj.comboJsonList[0].offerPrice;
+		$scope.getSimilarPrescriptions();
 		}
 	};
 	

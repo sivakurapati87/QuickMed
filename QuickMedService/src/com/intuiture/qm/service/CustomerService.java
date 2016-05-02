@@ -15,6 +15,7 @@ import com.intuiture.qm.entity.CustomerDeliveryAddress;
 import com.intuiture.qm.json.CustomerJson;
 import com.intuiture.qm.json.GridInfoJson;
 import com.intuiture.qm.util.MethodUtil;
+import com.intuiture.qm.util.SendEmail;
 import com.intuiture.qm.util.TransformDomainToJson;
 import com.intuiture.qm.util.TransformJsonToDomain;
 
@@ -29,21 +30,49 @@ public class CustomerService {
 
 	public CustomerJson registrationAction(CustomerJson customerJson) {
 		try {
+			customerJson.setErrorMsg(null);
 			Customer customer = null;
-			if (customerJson.getCustomerId() != null) {
-				customer = (Customer) commonRepository.findById(customerJson.getCustomerId(), Customer.class);
-			} else {
+			if (customerJson.getEmailId() != null) {
+				customer = customerRepository.getCustomerByEmailOrUserName(customerJson.getEmailId());
+			}
+			if (customer == null) {
 				customer = new Customer();
 			}
 			TransformJsonToDomain.getCustomer(customerJson, customer);
-			if (customerJson.getCustomerId() != null) {
-				commonRepository.update(customer);
+			if (customer.getCustomerId() != null) {
+				// commonRepository.update(customer);
+				customerJson.setErrorMsg("Email Already Exists");
 			} else {
 				commonRepository.persist(customer);
+				customerJson.setCustomerId(customer.getCustomerId());
+				SendEmail.sentEmail(customerJson.getEmailId(), null);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
+			customerJson.setErrorMsg("Something wrong with the website, sorry for inconvenience..");
+			LOG.error(e.getMessage(), e);
+		}
+
+		return customerJson;
+	}
+
+	public CustomerJson forgetPassword(String email) {
+		CustomerJson customerJson = new CustomerJson();
+		try {
+			customerJson.setErrorMsg(null);
+			Customer customer = null;
+			if (email != null) {
+				customer = customerRepository.getCustomerByEmailOrUserName(email);
+			}
+			if (customer != null) {
+				SendEmail.sentEmail(customer.getEmailId(), MethodUtil.passwordDecryption(customer.getPassword()));
+				customerJson.setErrorMsg("Password sent");
+			} else {
+				customerJson.setErrorMsg("Email/Username not exists");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			customerJson.setErrorMsg("Something wrong with the website, sorry for inconvenience..");
 			LOG.error(e.getMessage(), e);
 		}
 
@@ -86,6 +115,9 @@ public class CustomerService {
 			Customer customer = customerRepository.loginAction(username, MethodUtil.passwordEncryption(password));
 			if (customer != null) {
 				customerJson = TransformDomainToJson.getCustomerJson(customer);
+			} else {
+				customerJson = new CustomerJson();
+				customerJson.setErrorMsg("Credentials are wrong please try again");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

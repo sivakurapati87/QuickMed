@@ -96,6 +96,20 @@ public class ItemRepository extends BaseRepository {
 		return itemList;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Item> getAllSimilarItems(String chemicalIngradient) {
+		List<Item> itemList = null;
+		try {
+			Criteria criteria = getSession().createCriteria(Item.class);
+			criteria.add(Restrictions.eq("chemicalIngredient", chemicalIngradient));
+			itemList = criteria.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+		}
+		return itemList;
+	}
+
 	public Long getNoOfRequiredsearchProducts(String productName) {
 		Long number = null;
 		try {

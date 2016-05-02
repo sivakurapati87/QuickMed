@@ -2,7 +2,7 @@ var constants = {
 
 	localhost_port : 'http://localhost:8080',
 	// contexts
-	web_context : 'payz',
+	web_context : 'QuickMedWeb',
 	service_context : 'QuickMedService',
 	records_per_page :25,
 
@@ -11,7 +11,8 @@ var constants = {
 	ItemController : 'ItemController',
 	CustomerController : 'CustomerController',
 	LookUpController : 'LookUpController',
-	AddToCartController : 'AddToCartController'
+	AddToCartController : 'AddToCartController',
+	CheckoutItemController : 'CheckoutItemController'
 
 };
 

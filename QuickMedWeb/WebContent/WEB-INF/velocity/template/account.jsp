@@ -17,6 +17,11 @@
 		<form ng-submit="registrationAction()">
 			<div style="height: 10px;"></div>
 			<div class="row">
+				<div class="col-md-12">
+					<label style="color: red;">{{errorMsg}}</label> 
+				</div>
+			</div>
+			<div class="row">
 				<div class=" col-md-5">
 					<label>Enter Your First Name</label> <input type="text"
 						ng-model="rsCustomerJson.firstName" required="required"
@@ -34,17 +39,18 @@
 			<div style="height: 10px;"></div>
 			<div class="row">
 				<div class=" col-md-5">
-					<label>Enter your E-mail Id (User Name)</label> <input type="text"
-						ng-model="rsCustomerJson.emailId" required="required"
+					<label>Enter your E-mail Id (User Name)</label> <input type="email"
+						ng-model="rsCustomerJson.emailId" required="required" name='email' 
+					 pattern="^[A-Za-z0-9._]*\@[A-Za-z]*\.[A-Za-z]{2,50}"
 						class="form-control"> <small>Your Username is the
 						same as your E-mail ID</small>
 				</div>
 				<div class="col-md-1"></div>
 
 				<div class=" col-md-5">
-					<label>Enter Your Mobile Number</label> <input type="text"
-						ng-model="rsCustomerJson.phoneNumber" required="required"
-						class="form-control">
+					<label>Enter Your Mobile Number</label> <input type="text" pattern="[0-9]{10}" maxlength="10"
+						ng-model="rsCustomerJson.phoneNumber" required="required" title="Mobile Number should be numbers"
+						class="form-control"> 
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -52,14 +58,14 @@
 			<div class="row">
 				<div class=" col-md-5">
 					<label>Create Your Password</label> <input type="password"
-						ng-model="rsCustomerJson.password" required="required"
+						ng-model="rsCustomerJson.password" required="required" pattern=".{6,}" title="Length should be atleast 6"
 						class="form-control"> <small>Important: Make sure
 						your password is at least 6 characters long.</small>
 				</div>
 				<div class="col-md-1"></div>
 
 				<div class=" col-md-5">
-					<label>Conform Password</label> <input type="password"
+					<label>Confirm Password</label> <input type="password"
 						ng-model="rsCustomerJson.confirmPassword" required="required"
 						class="form-control">
 				</div>
@@ -100,6 +106,11 @@
 
 			<div style="height: 10px;"></div>
 			<div class="row">
+				<div class="col-md-12">
+					<label style="color: red;">{{errorMsg}}</label> 
+				</div>
+			</div>
+			<div class="row">
 				<div class=" col-md-5">
 					<label>Enter your E-mail Id (User Name)</label> <input type="text"
 						ng-model="rsCustomerJson.userName" required="required"
@@ -111,7 +122,7 @@
 				<div class=" col-md-5">
 					<label>Enter Your Password</label> <input type="password"
 						ng-model="rsCustomerJson.password" required="required"
-						class="form-control"> <small><a
+						class="form-control"> <small><a style="cursor: pointer;"
 						data-toggle="modal" data-target="#forgotPassword"> Forgot Your
 							Password?</a></small>
 				</div>
@@ -140,6 +151,7 @@
 
 		<!-- Modal content-->
 		<div class="modal-content">
+		<form ng-submit="forgetPassword()">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Retrieve Your Password</h4>
@@ -153,7 +165,7 @@
 				</div>
 				<div class="row">
 					<div class=" col-md-12">
-						<label>Enter your E-mail Id (User Name)</label> <input type="text"
+						<label>Enter your E-mail Id (User Name)</label> <input type="text" ng-model="requestedEmail" required="required"
 							class="form-control">
 
 					</div>
@@ -166,6 +178,7 @@
 				<input type="submit" value="GET PASSWORD" class="btn btn-info">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
+			</form>
 		</div>
 
 	</div>

@@ -51,12 +51,9 @@ public class HibernateConfiguration {
 		properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
 		properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl_auto"));
 
-		// properties.put("hibernate.cache.use_second_level_cache",
-		// environment.getRequiredProperty("hibernate.cache.use_second_level_cache"));
-		// properties.put("hibernate.cache.region.factory_class",
-		// environment.getRequiredProperty("hibernate.cache.region.factory_class"));
-		// properties.put("net.sf.ehcache.configurationResourceName",
-		// environment.getRequiredProperty("net.sf.ehcache.configurationResourceName"));
+		properties.put("hibernate.cache.use_second_level_cache", environment.getRequiredProperty("hibernate.cache.use_second_level_cache"));
+		properties.put("hibernate.cache.region.factory_class", environment.getRequiredProperty("hibernate.cache.region.factory_class"));
+		properties.put("net.sf.ehcache.configurationResourceName", environment.getRequiredProperty("net.sf.ehcache.configurationResourceName"));
 		return properties;
 	}
 

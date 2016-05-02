@@ -31,6 +31,7 @@ public class TotalOrdersJson {
 	private CustomerJson customerJson;
 	private List<AddToCartJson> orderList;
 	private String strOrderDate;
+	private String strTotalAmount;
 
 	public Integer getTotalOrderId() {
 		return totalOrderId;
@@ -206,6 +207,14 @@ public class TotalOrdersJson {
 
 	public void setTypeOfOrder(String typeOfOrder) {
 		this.typeOfOrder = typeOfOrder;
+	}
+
+	public String getStrTotalAmount() {
+		return strTotalAmount;
+	}
+
+	public void setStrTotalAmount(String strTotalAmount) {
+		this.strTotalAmount = strTotalAmount;
 	}
 
 }

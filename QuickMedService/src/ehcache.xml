@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache>
 
- <defaultCache maxElementsInMemory="100" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="200" />    
+<!--  <defaultCache maxElementsInMemory="100" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="200" />     -->
 
 <cache
-    name="quickmedCache"
+    name="com.intuiture.qm.entity.Item"
+    maxElementsInMemory="10000"
+    eternal="false"
+    timeToIdleSeconds="300"
+    timeToLiveSeconds="600"
+    overflowToDisk="true"
+/>
+<cache
+    name="com.intuiture.qm.entity.Module"
+    maxElementsInMemory="10000"
+    eternal="false"
+    timeToIdleSeconds="300"
+    timeToLiveSeconds="600"
+    overflowToDisk="true"
+/>
+<cache
+    name="com.intuiture.qm.entity.SubModule"
+    maxElementsInMemory="10000"
+    eternal="false"
+    timeToIdleSeconds="300"
+    timeToLiveSeconds="600"
+    overflowToDisk="true"
+/>
+<cache
+    name="com.intuiture.qm.entity.Category"
     maxElementsInMemory="10000"
     eternal="false"
     timeToIdleSeconds="300"

@@ -10,8 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "item")
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +31,7 @@ public class Item {
 	private Boolean isAvailable;
 	private Boolean isPrescription;
 	private String manufacturerName;
+	private String chemicalIngredient;
 	@ManyToOne
 	@JoinColumn(name = "categoryCode", insertable = false, updatable = false)
 	private Category category;
@@ -133,6 +138,14 @@ public class Item {
 
 	public void setIsPrescription(Boolean isPrescription) {
 		this.isPrescription = isPrescription;
+	}
+
+	public String getChemicalIngredient() {
+		return chemicalIngredient;
+	}
+
+	public void setChemicalIngredient(String chemicalIngredient) {
+		this.chemicalIngredient = chemicalIngredient;
 	}
 
 }

@@ -8,8 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "category")
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Category {
 	@Id
 	private String categoryCode;

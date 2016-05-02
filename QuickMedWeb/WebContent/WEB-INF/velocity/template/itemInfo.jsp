@@ -1,9 +1,10 @@
-<div class="container-fluid" style="background: white; width: 100%;" id="itemInfoDivId">
+<div class="container-fluid" style="background: white; width: 100%;"
+	id="itemInfoDivId">
 	<div class="row searchbg_bg_image" style="background: #edeab1;">
 		<div class="col-md-12" style="margin-top: 20px; margin-bottom: 20px;">
 			<div class="row">
 				<div class="col-md-2">
-					<img ng-src="{{itemInfoObj.itemImageBase64}}">
+					<img ng-src="{{itemInfoObj.itemImageBase64}}" width="100" height="100">
 				</div>
 				<div class="col-md-3">
 					<div class="row">
@@ -77,8 +78,69 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="row searchbg_bg_image" style="background: #edeab1;">
-		<div class="col-md-12" style="margin-top: 20px; margin-bottom: 20px;">
-			{{rsAddedCartItemList}}</div>
-	</div> -->
+
+
+
+
+
+
+
+	<div style="height: 20px;"></div>
+	<div class="row" style="width: 80%;margin: 0 auto;">
+		<div class="row show1 " style="background: #a3a92e;">
+			<div class="col-md-4">
+				<label class="label_bold_18">Name</label>
+			</div>
+			<div class="col-md-4">
+				<label class="label_bold_18">Price</label>
+			</div>
+			<div class="col-md-4">
+				<label class="label_bold_18">Manufacturer</label>
+			</div>
+		</div>
+		<div class="row show1" ng-repeat="product in similarPrescriptionsList"
+			ng-click="displayItemInfo(product)" style="cursor: pointer;"
+			ng-class-odd="'odd'" ng-class-even="'even'">
+			<div class="col-md-4">
+				<label class="lable16" style="cursor: pointer;">{{product.itemName}}</label>
+			</div>
+			<div class="col-md-4">
+				<label class="lable16"  style="cursor: pointer;">{{product.comboJsonList[0].offerPrice}}</label>
+			</div>
+			<div class="col-md-4">
+				<label class="lable16"  style="cursor: pointer;">{{product.manufacturerName}}</label>
+			</div>
+		</div>
+		<!-- for mobile mobile -->
+		<div class="row show2" ng-repeat="product in similarPrescriptionsList"
+			ng-click="displayItemInfo(product)" style="cursor: pointer;"
+			ng-class-odd="'odd'" ng-class-even="'even'">
+			<div class="row">
+				<div class="col-md-4 float_l">
+					<label class="label_bold_18">Name</label>
+				</div>
+				<div class="col-md-8 float_l">
+					<label class="lable16">{{product.itemName}}</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 float_l">
+					<label class="label_bold_18">Price</label>
+				</div>
+				<div class="col-md-8 float_l">
+					<label class="lable16">{{product.comboJsonList[0].offerPrice}}</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 float_l">
+					<label class="label_bold_18">Manufacturer</label>
+				</div>
+				<div class="col-md-8 float_l">
+					<label class="lable16">{{product.manufacturerName}}</label>
+				</div>
+			</div>
+
+		</div>
+		<!-- for mobile mobile -->
+	</div>
 </div>

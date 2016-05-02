@@ -34,12 +34,7 @@
 					<label class="lable16">{{cartItem.itemName}}</label>
 				</div>
 				<div class="col-md-3">
-					<select
-						class="form-control ng-pristine ng-valid ng-valid-required ng-touched"
-						ng-model="cartItem.quantity"
-						ng-change="onChangeQuantityCombo(cartItem)"
-						ng-options="combo.value as combo.description for combo in  cartItem.comboJsonList">
-					</select>
+					{{cartItem.quantity}}
 				</div>
 				<div class="col-md-3">
 					<label class="label_bold_16"

@@ -67,6 +67,7 @@ public class TransformDomainToJson {
 			itemJson.setManufacturerName(item.getManufacturerName());
 			itemJson.setOffer(item.getOffer());
 			itemJson.setPrice(item.getPrice());
+			itemJson.setChemicalIngradient(item.getChemicalIngredient());
 			itemJson.setComboJsonList(getComboJsonList(itemJson.getPrice(), itemJson.getOffer()));
 			if (item.getCategory() != null) {
 				itemJson.setCategoryName(item.getCategory().getCategoryName());

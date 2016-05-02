@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,7 +41,7 @@ public class CustomerController {
 		}
 		return customerService.placeCustomerDeliverAddress(customerJson);
 	}
-	
+
 	@RequestMapping(value = "/getAllCustomer", method = RequestMethod.POST)
 	public @ResponseBody List<CustomerJson> getAllCustomer(HttpServletRequest request, HttpServletResponse response, @RequestBody GridInfoJson gridInfoJson) {
 		List<CustomerJson> customerJsonList = null;
@@ -56,6 +57,11 @@ public class CustomerController {
 	public @ResponseBody synchronized Long getNoOfItems(HttpServletRequest request, HttpServletResponse response, @RequestBody GridInfoJson gridInfoJson) {
 		Long noOfRecords = customerService.getNoOfItemsList(gridInfoJson);
 		return noOfRecords;
+	}
+
+	@RequestMapping(value = "/forgetPassword/{email}", method = RequestMethod.GET)
+	public CustomerJson forgetPassword(HttpServletRequest request, HttpServletResponse response, @PathVariable("email") String email) {
+		return customerService.forgetPassword(email);
 	}
 
 }

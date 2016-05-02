@@ -16,7 +16,13 @@ public class CommonRepository extends BaseRepository {
 	 * This method is to save an object
 	 */
 	public synchronized void persist(Object object) {
-		getSession().persist(object);
+		try {
+			getSession().persist(object);
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+		}
+
 	}
 
 	/*

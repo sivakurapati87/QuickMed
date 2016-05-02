@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.intuiture.qm.json.LookUpDetailJson;
 import com.intuiture.qm.service.LookUpService;
+import com.intuiture.qm.util.HashCodeGenerator;
 
 @Controller
 @RequestMapping("/LookUpController")
@@ -33,5 +34,9 @@ public class LookUpController {
 	@RequestMapping(value = "/searchState/{stateName}", method = RequestMethod.GET)
 	public @ResponseBody List<LookUpDetailJson> searchState(@PathVariable("stateName") String stateName) {
 		return lookUpService.searchState(stateName);
+	}
+	@RequestMapping(value = "/hashCode", method = RequestMethod.GET)
+	public @ResponseBody LookUpDetailJson searchState() {
+		return HashCodeGenerator.generatehash();
 	}
 }

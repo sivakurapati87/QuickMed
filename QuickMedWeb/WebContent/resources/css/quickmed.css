@@ -298,4 +298,6 @@
 	padding: 0px;
 	text-align: center;
 }
-
+.warning{
+   border:1px solid red;
+ }

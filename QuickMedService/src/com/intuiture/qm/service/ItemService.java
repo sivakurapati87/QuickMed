@@ -133,7 +133,23 @@ public class ItemService {
 		}
 		return productList;
 	}
+	public List<ItemJson> getAllSimilarItems(String chemicalIngradient) {
+		List<ItemJson> productList = null;
+		try {
+			List<Item> itemList = itemRepository.getAllSimilarItems(chemicalIngradient);
+			if (itemList != null && itemList.size() > 0) {
+				productList = new ArrayList<ItemJson>();
+				for (Item item : itemList) {
+					productList.add(TransformDomainToJson.getItemJson(item));
+				}
+			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+		}
+		return productList;
+	}
 	public Integer getNoOfRequiredsearchProducts(String productName) {
 		Integer noOfRecords = null;
 		try {

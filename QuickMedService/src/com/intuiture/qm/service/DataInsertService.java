@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import com.intuiture.qm.util.MethodUtil;
 @Service
 @Transactional
 public class DataInsertService {
+	private static final Logger LOG = Logger.getLogger(DataInsertService.class);
 	@Autowired
 	private CommonRepository commonRepository;
 	@Autowired
@@ -135,6 +137,7 @@ public class DataInsertService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 
 			return false;
 		}

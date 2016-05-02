@@ -19,6 +19,7 @@ public class CustomerJson {
 	private String city;
 	private String state;
 	private String strCreatedOn;
+	private String errorMsg;
 	private CustomerDeliveryAddressJson customerDeliveryAddressJson;
 
 	public Long getPincode() {
@@ -155,5 +156,13 @@ public class CustomerJson {
 
 	public void setStrCreatedOn(String strCreatedOn) {
 		this.strCreatedOn = strCreatedOn;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 }

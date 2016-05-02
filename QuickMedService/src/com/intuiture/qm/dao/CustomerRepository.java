@@ -31,6 +31,19 @@ public class CustomerRepository extends BaseRepository {
 		return customer;
 	}
 
+	public Customer getCustomerByEmailOrUserName(String username) {
+		Customer customer = null;
+		try {
+			Criteria criteria = getSession().createCriteria(Customer.class);
+			criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("emailId", username), Restrictions.eq("userName", username))));
+			customer = (Customer) criteria.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+		}
+		return customer;
+	}
+
 	@SuppressWarnings("unchecked")
 	public CustomerDeliveryAddress findAddressByTotalOrderId(Integer totalOrderId) {
 		CustomerDeliveryAddress customerDeliveryAddress = null;
@@ -64,12 +77,13 @@ public class CustomerRepository extends BaseRepository {
 		}
 		return customerList;
 	}
+
 	public Long getNoOfCustomers(GridInfoJson gridInfoJson) {
 		Long numberOfProperties = null;
 		try {
 			String sqlQuery = "Select count(*) from Customer c ";
 			sqlQuery = SearchQueryBuilder.generateSearchQuery(gridInfoJson, sqlQuery);
-			Query query=getSession().createQuery(sqlQuery);
+			Query query = getSession().createQuery(sqlQuery);
 			numberOfProperties = (Long) query.uniqueResult();
 			// long endTime = Calendar.getInstance().getTimeInMillis();
 		} catch (Exception e) {

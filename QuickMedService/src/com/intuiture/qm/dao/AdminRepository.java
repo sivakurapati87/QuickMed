@@ -28,7 +28,7 @@ public class AdminRepository extends BaseRepository {
 		Admin admin = null;
 		try {
 			Criteria criteria = getSession().createCriteria(Admin.class);
-			criteria.add(Restrictions.eq("userName", username));
+			criteria.add(Restrictions.and(Restrictions.eq("userName", username), Restrictions.eq("isDeleted", Boolean.FALSE)));
 			admin = (Admin) criteria.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();

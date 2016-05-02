@@ -518,6 +518,11 @@ public class MethodUtil {
 						break;
 					case 7:
 						if (sheetNumber.equals(EnumUtils.ITEM.getValue())) {
+							PropertyUtils.setProperty(obj, "chemicalIngredient", getCellValue(nextCell));
+						}
+						break;
+					case 8:
+						if (sheetNumber.equals(EnumUtils.ITEM.getValue())) {
 							PropertyUtils.setProperty(obj, "isPrescription", getCellValue(nextCell));
 						}
 						break;
